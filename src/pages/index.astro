@@ -1,0 +1,330 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ShowRow from '../components/ShowRow.astro';
+import PlatformLink from '../components/PlatformLink.astro';
+import EmailSignup from '../components/EmailSignup.astro';
+import site from '../data/site.json';
+import links from '../data/links.json';
+import videos from '../data/videos.json';
+import merch from '../data/merch.json';
+import { upcomingShows, formatShowDate, parseShowDate } from '../lib/shows';
+import { photo } from '../lib/images';
+
+import hero from '../assets/photos/hero-bw-stage.png';
+
+const shows = upcomingShows();
+
+/* Rich results for upcoming dates. */
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MusicGroup',
+    name: site.name,
+    url: site.url,
+    description: site.description,
+    image: `${site.url}/og-image.jpg`,
+    email: site.bookingEmail,
+    genre: ['Covers', 'Folk', 'Country', 'R&B', 'Pop'],
+    address: { '@type': 'PostalAddress', addressLocality: 'Atlanta', addressRegion: 'GA', addressCountry: 'US' },
+    sameAs: links.platforms.map((p) => p.href),
+  },
+  ...shows.map((s) => ({
+    '@context': 'https://schema.org',
+    '@type': 'MusicEvent',
+    name: `${site.name} at ${s.venue}`,
+    startDate: parseShowDate(s.date)?.toISOString().slice(0, 10) ?? s.date,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    performer: { '@type': 'MusicGroup', name: site.name },
+    location: { '@type': 'Place', name: s.venue, address: s.city },
+    ...(s.soldOut
+      ? { offers: { '@type': 'Offer', availability: 'https://schema.org/SoldOut' } }
+      : {}),
+  })),
+];
+---
+
+<Base title={site.name} page="home" jsonLd={jsonLd}>
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <Image
+      class="hero__img photo"
+      src={hero}
+      alt="Patrick Scott on stage"
+      widths={[800, 1280, 1920]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="hero__protect" aria-hidden="true"></div>
+    <div class="hero__inner container">
+      <p class="hero__eyebrow mono">Live looping · Genre-bending covers · Atlanta</p>
+      <h1 class="hero__title" id="hero-title">Any song.<br />His way.</h1>
+      <div class="hero__actions">
+        <Button variant="solid" size="lg" href="/booking/">Book a show</Button>
+        <Button variant="outline" size="lg" href="#shows">See dates</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / story -->
+  <section class="container section rule-bottom" aria-labelledby="about-title">
+    <SectionHeader eyebrow="The set" title="Songs you know, nobody's version" id="about-title" />
+    <div class="about">
+      <p class="about__lead">
+        I rework covers live with a loop pedal — hip hop turned folk, country, R&B, pop — building
+        each song from nothing in front of you.
+      </p>
+      <p class="lede">
+        Atlanta based. Bar patios to festival stages, solo to full band. Ten years of playing rooms
+        where people came for a drink and stayed for the set.
+      </p>
+    </div>
+  </section>
+
+  <!-- Shows -->
+  <section id="shows" class="container section" aria-labelledby="shows-title">
+    <SectionHeader eyebrow="Upcoming shows" title="On stage" id="shows-title" />
+    <div class="shows">
+      {
+        shows.length > 0 ? (
+          shows.map((s) => (
+            <ShowRow
+              date={formatShowDate(s.date)}
+              isoDate={s.date}
+              time={s.time}
+              venue={s.venue}
+              city={s.city}
+              note={s.note}
+              ticketHref={s.ticketHref}
+              soldOut={s.soldOut}
+            />
+          ))
+        ) : (
+          <p class="shows__empty mono">No dates on the books. Check back soon.</p>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- Music / streaming -->
+  <section class="rule-top rule-bottom" aria-labelledby="listen-title">
+    <div class="container section--tight section">
+      <SectionHeader eyebrow="Listen" title="Hip hop, gone folk" id="listen-title" />
+      <p class="lede listen__copy">
+        Covers you know, arranged like you've never heard them. Built live with a loop pedal —
+        country to R&B to pop, one set.
+      </p>
+      <div class="platforms">
+        {links.platforms.map((p) => <PlatformLink name={p.name} href={p.href} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Videos -->
+  <section class="container section" aria-labelledby="watch-title">
+    <SectionHeader eyebrow="Watch" title="Live sets" id="watch-title" />
+    <div class="grid-3">
+      {
+        videos.map((v) => (
+          <Card image={photo(v.image)} imageAlt={v.imageAlt} href={v.href}>
+            <div class="card__kind mono">{v.kind}</div>
+            <div class="card__title">{v.title}</div>
+          </Card>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Merch -->
+  <section class="rule-top" aria-labelledby="merch-title">
+    <div class="container section">
+      <SectionHeader eyebrow="Merch" title="Wear the set" id="merch-title" />
+      <div class="grid-3">
+        {
+          merch.map((m) => (
+            <Card image={photo(m.image)} imageAlt={m.imageAlt} href={m.href}>
+              <div class="card__kind mono">{m.kind}</div>
+              <div class="card__title">{m.title}</div>
+              <div class="card__price mono">{m.price}</div>
+            </Card>
+          ))
+        }
+      </div>
+      <p class="merch__todo mono">
+        TODO: point each item's "href" in src/data/merch.json at your Stripe Payment Link or store.
+      </p>
+    </div>
+  </section>
+
+  <!-- Booking inquiry -->
+  <section class="booking-cta rule-top" aria-labelledby="booking-cta-title">
+    <div class="container section">
+      <SectionHeader eyebrow="Booking" title="Book a show" id="booking-cta-title" />
+      <p class="lede booking-cta__copy">Bars, breweries, weddings, private events.</p>
+      <div class="booking-cta__actions">
+        <Button variant="solid" size="lg" href="/booking/">Send a request</Button>
+        <Button variant="outline" size="lg" href={`mailto:${site.bookingEmail}`}>Email me</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Email signup -->
+  <EmailSignup />
+</Base>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 78svh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  @media (min-width: 900px) {
+    .hero {
+      min-height: 620px;
+    }
+  }
+
+  .hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+
+  .hero__protect {
+    position: absolute;
+    inset: 0;
+    background: var(--protect-bottom);
+  }
+
+  .hero__inner {
+    position: relative;
+    padding-bottom: var(--space-12);
+  }
+
+  @media (min-width: 900px) {
+    .hero__inner {
+      padding-bottom: 72px;
+    }
+  }
+
+  .hero__eyebrow {
+    color: var(--text-accent);
+    margin-bottom: var(--space-4);
+  }
+
+  .hero__title {
+    /* --text-6xl (104px) ceiling, fluid down to mobile */
+    font-size: clamp(44px, 11vw, var(--text-6xl));
+    line-height: 0.92;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .about {
+    margin-top: var(--space-8);
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 900px) {
+    .about {
+      grid-template-columns: 1.1fr 1fr;
+      gap: var(--space-16);
+    }
+  }
+
+  .about__lead {
+    font-size: var(--text-lg);
+    line-height: var(--leading-body);
+    max-width: 40ch;
+  }
+
+  .shows {
+    margin-top: var(--space-8);
+  }
+
+  .shows__empty {
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: var(--space-6) var(--space-2);
+  }
+
+  .listen__copy {
+    margin: var(--space-5) 0 var(--space-7);
+    max-width: 560px;
+  }
+
+  .platforms {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    margin-top: var(--space-8);
+  }
+
+  @media (min-width: 600px) {
+    .grid-3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .card__kind {
+    color: var(--text-accent);
+  }
+
+  .card__title {
+    font-weight: 700;
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+    margin-top: var(--space-1);
+  }
+
+  .card__price {
+    color: var(--text-muted);
+    margin-top: var(--space-2);
+  }
+
+  .merch__todo,
+  .booking-cta__copy {
+    margin-top: var(--space-6);
+  }
+
+  .merch__todo {
+    color: var(--text-accent);
+    line-height: 1.7;
+  }
+
+  .booking-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+</style>

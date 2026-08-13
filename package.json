@@ -1,0 +1,26 @@
+{
+  "name": "patrick-scott-music-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run assets && astro dev",
+    "start": "npm run dev",
+    "assets": "node scripts/gen-assets.mjs",
+    "build": "npm run assets && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.1.1",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/qrcode": "^1.5.6",
+    "sharp": "^0.35.3",
+    "typescript": "^5.9.3"
+  }
+}

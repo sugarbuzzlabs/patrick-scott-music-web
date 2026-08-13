@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Artist site" description="patrickscottmusic.com homepage: hero, show listings, platform links, video cards, email capture" -->
+<helmet><script src="./ds-base.js"></script><style>body{margin:0;background:var(--surface-page);font-family:var(--font-body);color:var(--text-primary);-webkit-font-smoothing:antialiased}a{color:var(--text-primary)}a:hover{color:var(--accent)}</style></helmet>
+<div style="position:sticky;top:0;z-index:50;background:rgba(12,11,10,0.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-subtle)">
+<div style="max-width:1200px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:28px">
+<a href="#top" style="text-decoration:none;font-family:var(--font-mono);font-weight:400;font-size:15px;letter-spacing:0.08em;color:var(--paper)">PATRICK SCOTT<span style="color:var(--text-accent)">/</span>MUSIC</a>
+<div style="flex:1"></div>
+<a href="#shows" style="font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;color:var(--text-secondary)">Shows</a>
+<a href="#listen" style="font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;color:var(--text-secondary)">Listen</a>
+<a href="#book" style="font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;color:var(--text-secondary)">Booking</a>
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.Button" variant="solid" size="sm" href="https://venmo.com" hint-size="60px,32px">Tip</x-import>
+</div>
+</div>
+<div id="top" style="position:relative;min-height:620px;display:flex;align-items:flex-end;overflow:hidden">
+<img src="../../assets/photos/hero-bw-stage.png" alt="Patrick Scott on stage" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:var(--photo-filter)">
+<div style="position:absolute;inset:0;background:var(--protect-bottom)"></div>
+<div style="position:relative;max-width:1200px;margin:0 auto;width:100%;padding:0 32px 72px;box-sizing:border-box">
+<div style="font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-accent);margin-bottom:16px">Live looping · Genre-bending covers · Atlanta</div>
+<h1 style="margin:0;font-family:var(--font-display);font-weight:800;font-stretch:120%;text-transform:uppercase;letter-spacing:-0.01em;line-height:0.92;font-size:clamp(56px,8vw,104px)">Any song.<br>His way.</h1>
+<div style="display:flex;gap:12px;margin-top:32px">
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.Button" variant="solid" size="lg" href="#book" hint-size="140px,48px">Book a show</x-import>
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.Button" variant="outline" size="lg" href="#shows" hint-size="130px,48px">See dates</x-import>
+</div>
+</div>
+</div>
+<div id="shows" style="max-width:1200px;margin:0 auto;padding:80px 32px">
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.SectionHeader" eyebrow="Upcoming shows" title="On stage" hint-size="100%,80px"></x-import>
+<div style="margin-top:32px">
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.ShowRow" date="FRI · AUG 21" time="8:00 PM" venue="Monday Night Brewing" city="Atlanta, GA" ticket-href="#" hint-size="100%,64px"></x-import>
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.ShowRow" date="SAT · AUG 29" time="7:00 PM" venue="The Porch Sessions" city="Decatur, GA" note="looping set" hint-size="100%,64px"></x-import>
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.ShowRow" date="FRI · SEP 04" time="9:00 PM" venue="Ormsby's" city="Atlanta, GA" hint-size="100%,64px"></x-import>
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.ShowRow" date="SAT · SEP 12" time="9:00 PM" venue="Smith's Olde Bar" city="Atlanta, GA" dc-props="{{ soldOutProps }}" hint-size="100%,64px"></x-import>
+</div>
+</div>
+<div id="listen" style="border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">
+<div style="max-width:1200px;margin:0 auto;padding:64px 32px">
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.SectionHeader" eyebrow="Listen" title="Hip hop, gone folk" hint-size="100%,80px"></x-import>
+<p style="max-width:560px;color:var(--text-secondary);line-height:1.55;margin:20px 0 28px">Covers you know, arranged like you've never heard them. Built live with a loop pedal — country to R&amp;B to pop, one set.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.PlatformLink" name="Spotify" hint-size="120px,40px"></x-import>
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.PlatformLink" name="Apple Music" hint-size="140px,40px"></x-import>
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.PlatformLink" name="YouTube" hint-size="120px,40px"></x-import>
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.PlatformLink" name="Instagram" hint-size="130px,40px"></x-import>
+</div>
+</div>
+</div>
+<div style="max-width:1200px;margin:0 auto;padding:80px 32px">
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.SectionHeader" eyebrow="Watch" title="Live sets" hint-size="100%,80px"></x-import>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px">
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.Card" image="../../assets/photos/festival-stage.jpg" href="#" image-alt="Festival set" hint-size="100%,320px"><div style="font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-accent)">Festival</div><div style="font-weight:700;font-size:18px;margin-top:6px">Full band, ACS Festival</div></x-import>
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.Card" image="../../assets/photos/closeup-mic.jpg" href="#" image-alt="Bar set" hint-size="100%,320px"><div style="font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-accent)">Solo loop</div><div style="font-weight:700;font-size:18px;margin-top:6px">90s hip hop, gone folk</div></x-import>
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.Card" image="../../assets/photos/patio-duo.jpg" href="#" image-alt="Patio duo" hint-size="100%,320px"><div style="font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-accent)">Duo</div><div style="font-weight:700;font-size:18px;margin-top:6px">Patio sessions</div></x-import>
+</div>
+</div>
+<div id="book" style="background:var(--surface-raised);border-top:1px solid var(--border-subtle)">
+<div style="max-width:560px;margin:0 auto;padding:72px 32px;text-align:center">
+<h2 style="margin:0;font-family:var(--font-display);font-weight:800;font-stretch:120%;text-transform:uppercase;font-size:38px;line-height:0.95">New shows, first.</h2>
+<sc-if value="{{ subbed }}" hint-placeholder-val="{{ false }}">
+<div style="font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-accent);margin-top:24px">You're on the list.</div>
+</sc-if>
+<sc-if value="{{ notSubbed }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;gap:10px;margin-top:28px;align-items:stretch">
+<div style="flex:1"><x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.Input" placeholder="you@example.com" type="email" hint-size="100%,44px"></x-import></div>
+<x-import component-from-global-scope="PatrickScottMusicDesignSystem_e1fb0d.Button" variant="solid" onClick="{{ onSub }}" hint-size="100px,44px">Sign up</x-import>
+</div>
+</sc-if>
+</div>
+</div>
+<div style="border-top:1px solid var(--border-subtle);text-align:center;padding:40px 32px">
+<div style="font-family:var(--font-mono);font-weight:400;font-size:16px;letter-spacing:0.08em">PATRICK SCOTT<span style="color:var(--text-accent)">/</span>MUSIC</div>
+<div style="font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-top:10px">© 2026 · patrickscottmusic.com · booking@patrickscottmusic.com</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { subbed: false };
+  renderVals() {
+    return {
+      subbed: this.state.subbed,
+      notSubbed: !this.state.subbed,
+      onSub: () => this.setState({ subbed: true }),
+      soldOutProps: { soldOut: true },
+    };
+  }
+}
+</script>
+</body>
+</html>

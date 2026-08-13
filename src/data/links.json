@@ -1,0 +1,9 @@
+{
+  "_comment": "Streaming + social links shown in the Listen section and footer. TODO: replace the placeholder URLs with your real profiles.",
+  "platforms": [
+    { "name": "Spotify", "href": "https://open.spotify.com/" },
+    { "name": "Apple Music", "href": "https://music.apple.com/" },
+    { "name": "YouTube", "href": "https://youtube.com/" },
+    { "name": "Instagram", "href": "https://instagram.com/" }
+  ]
+}

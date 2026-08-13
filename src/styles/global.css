@@ -1,0 +1,187 @@
+/* Design-system tokens, ported verbatim from the design system's styles.css + tokens/ */
+@import './tokens-entry.css';
+
+/* ---------------------------------------------------------------
+   Base — dark-first, poster-bold. Nothing here re-derives a token.
+   --------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* keep anchored sections clear of the sticky nav (two rows on mobile) */
+  scroll-padding-top: 120px;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (min-width: 800px) {
+  html {
+    scroll-padding-top: 76px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-stretch: var(--display-stretch);
+  text-transform: var(--display-transform);
+  letter-spacing: var(--display-tracking);
+  line-height: var(--leading-tight);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------
+   Shared primitives
+   --------------------------------------------------------------- */
+
+/* Mono meta/label: IBM Plex Mono 500, 12px, uppercase, 0.14em */
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--label-size);
+  font-weight: 500;
+  letter-spacing: var(--label-tracking);
+  text-transform: uppercase;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-inline: var(--space-5);
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-inline: var(--space-8);
+  }
+}
+
+/* Section padding: generous on desktop (80px), tightened mobile-first */
+.section {
+  padding-block: var(--space-16);
+}
+
+@media (min-width: 900px) {
+  .section {
+    padding-block: var(--space-20);
+  }
+}
+
+.section--tight {
+  padding-block: var(--space-12);
+}
+
+@media (min-width: 900px) {
+  .section--tight {
+    padding-block: var(--space-16);
+  }
+}
+
+.rule-top {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.rule-bottom {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.lede {
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+  max-width: 56ch;
+}
+
+.photo {
+  filter: var(--photo-filter);
+  display: block;
+  object-fit: cover;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -100px;
+  z-index: 100;
+  background: var(--accent);
+  color: var(--text-on-accent);
+  font-family: var(--font-mono);
+  font-size: var(--label-size);
+  letter-spacing: var(--label-tracking);
+  text-transform: uppercase;
+  padding: var(--space-3) var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  transition: top var(--dur) var(--ease);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+  color: var(--text-on-accent);
+}

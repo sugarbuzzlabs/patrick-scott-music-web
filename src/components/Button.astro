@@ -1,0 +1,132 @@
+---
+/**
+ * Button — port of components/core/Button.jsx
+ * Hover/press states move from JS state to CSS pseudo-classes.
+ */
+interface Props {
+  variant?: 'solid' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  disabled?: boolean;
+  full?: boolean;
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  external?: boolean;
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  variant = 'solid',
+  size = 'md',
+  disabled = false,
+  full = false,
+  href,
+  type = 'button',
+  external = false,
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+const classes = ['btn', `btn--${variant}`, `btn--${size}`, full && 'btn--full', className]
+  .filter(Boolean)
+  .join(' ');
+const extAttrs = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+---
+
+<Tag
+  class={classes}
+  href={href}
+  type={href ? undefined : type}
+  disabled={href ? undefined : disabled}
+  aria-disabled={disabled ? 'true' : undefined}
+  {...extAttrs}
+  {...rest}
+>
+  <slot />
+</Tag>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-radius: var(--radius-none);
+    cursor: pointer;
+    text-decoration: none;
+    box-sizing: border-box;
+    /* ≥44px touch target at every size */
+    min-height: 44px;
+    transition:
+      background var(--dur) var(--ease),
+      border-color var(--dur) var(--ease),
+      color var(--dur) var(--ease),
+      filter var(--dur-fast) var(--ease);
+  }
+
+  .btn--sm {
+    font-size: 13px;
+    padding: var(--space-2) var(--space-4);
+  }
+  .btn--md {
+    font-size: 14px;
+    padding: var(--space-3) var(--space-5);
+  }
+  .btn--lg {
+    font-size: 16px;
+    padding: var(--space-4) var(--space-8);
+  }
+
+  .btn--full {
+    width: 100%;
+  }
+
+  .btn--solid {
+    background: var(--accent);
+    color: var(--text-on-accent);
+    border: 1px solid transparent;
+  }
+  .btn--solid:hover {
+    background: var(--accent-strong);
+    color: var(--text-on-accent);
+  }
+  .btn--solid:active {
+    background: var(--accent-deep);
+  }
+
+  .btn--outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+  }
+  .btn--outline:hover {
+    background: var(--ink-800);
+    border-color: var(--border-strong);
+    color: var(--text-primary);
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid transparent;
+  }
+  .btn--ghost:hover {
+    color: var(--text-accent);
+  }
+
+  /* Press: brightness down slightly, no shrink */
+  .btn:active {
+    filter: brightness(0.94);
+  }
+
+  .btn[disabled],
+  .btn[aria-disabled='true'] {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+</style>

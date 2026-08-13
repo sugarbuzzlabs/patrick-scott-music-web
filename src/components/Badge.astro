@@ -1,0 +1,46 @@
+---
+/** Badge — port of components/core/Badge.jsx */
+interface Props {
+  tone?: 'neutral' | 'accent' | 'live' | 'sold';
+  class?: string;
+}
+const { tone = 'neutral', class: className = '' } = Astro.props;
+---
+
+<span class={`badge badge--${tone} ${className}`}><slot /></span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: var(--space-1) 10px;
+    border-radius: var(--radius-none);
+  }
+
+  .badge--neutral {
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    background: transparent;
+  }
+  .badge--accent {
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    background: transparent;
+  }
+  .badge--live {
+    border: 1px solid var(--accent);
+    color: var(--text-on-accent);
+    background: var(--accent);
+  }
+  .badge--sold {
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    background: var(--ink-800);
+  }
+</style>

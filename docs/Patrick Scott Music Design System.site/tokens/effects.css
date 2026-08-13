@@ -1,0 +1,13 @@
+:root {
+  --shadow-card: 0 1px 0 rgba(244,241,234,0.06) inset, 0 12px 32px rgba(0,0,0,0.45);
+  --shadow-pop: 0 20px 48px rgba(0,0,0,0.6);
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur: 200ms;
+  /* Photography treatment: black & white, slightly lifted contrast */
+  --photo-filter: grayscale(1) contrast(1.06) brightness(0.98);
+  --photo-filter-dim: grayscale(1) contrast(1.05) brightness(0.6);
+  /* Protection gradient for text over imagery */
+  --protect-bottom: linear-gradient(180deg, rgba(12,11,10,0) 30%, rgba(12,11,10,0.88) 85%);
+  --protect-left: linear-gradient(90deg, rgba(12,11,10,0.92) 25%, rgba(12,11,10,0) 70%);
+}

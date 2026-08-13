@@ -1,0 +1,36 @@
+<!-- @dsCard group="Components" viewport="700x360" name="Music components" -->
+<!DOCTYPE html><html><head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+<script src="../../ds-loader.js"></script>
+<style>body{margin:0;background:var(--surface-page);font-family:var(--font-body);color:var(--text-primary);-webkit-font-smoothing:antialiased}</style>
+</head><body><div id="root"></div>
+<script>
+loadDS('../../').then((NS) => {
+  const { Button, IconButton, Input, Select, Textarea, Badge, Card, Tabs, Dialog, ShowRow, SectionHeader, PlatformLink } = NS;
+  const src = document.getElementById('demo-src').textContent;
+  const code = Babel.transform(src, { presets: [['react', { runtime: 'classic' }]] }).code;
+  const Demo = new Function('React', 'Button', 'IconButton', 'Input', 'Select', 'Textarea', 'Badge', 'Card', 'Tabs', 'Dialog', 'ShowRow', 'SectionHeader', 'PlatformLink', code + '\nreturn Demo;')(React, Button, IconButton, Input, Select, Textarea, Badge, Card, Tabs, Dialog, ShowRow, SectionHeader, PlatformLink);
+  ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(Demo));
+});
+</script>
+<script type="text/plain" id="demo-src">
+function Demo() {
+
+  return (
+    <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <SectionHeader eyebrow="Upcoming shows" title="On stage" action={<Button variant="ghost">All dates</Button>} />
+      <div>
+        <ShowRow date="FRI · AUG 21" time="8:00 PM" venue="Monday Night Brewing" city="Atlanta, GA" ticketHref="#" />
+        <ShowRow date="SAT · AUG 29" venue="The Porch Sessions" city="Decatur, GA" note="looping set" />
+        <ShowRow date="SAT · SEP 12" time="9:00 PM" venue="Smith's Olde Bar" city="Atlanta, GA" soldOut />
+      </div>
+      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+        <PlatformLink name="Spotify" /><PlatformLink name="Apple Music" /><PlatformLink name="YouTube" /><PlatformLink name="Venmo" />
+      </div>
+    </div>
+  );
+}
+</script></body></html>

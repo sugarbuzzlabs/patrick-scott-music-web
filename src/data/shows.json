@@ -1,0 +1,38 @@
+[
+  {
+    "date": "2026-08-21",
+    "time": "8:00 PM",
+    "venue": "Monday Night Brewing",
+    "city": "Atlanta, GA",
+    "ticketHref": "#",
+    "note": null,
+    "soldOut": false
+  },
+  {
+    "date": "2026-08-29",
+    "time": "7:00 PM",
+    "venue": "The Porch Sessions",
+    "city": "Decatur, GA",
+    "ticketHref": null,
+    "note": "looping set",
+    "soldOut": false
+  },
+  {
+    "date": "2026-09-04",
+    "time": "9:00 PM",
+    "venue": "Ormsby's",
+    "city": "Atlanta, GA",
+    "ticketHref": null,
+    "note": null,
+    "soldOut": false
+  },
+  {
+    "date": "2026-09-12",
+    "time": "9:00 PM",
+    "venue": "Smith's Olde Bar",
+    "city": "Atlanta, GA",
+    "ticketHref": null,
+    "note": null,
+    "soldOut": true
+  }
+]

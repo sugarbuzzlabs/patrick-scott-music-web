@@ -1,0 +1,176 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Badge from '../components/Badge.astro';
+import Card from '../components/Card.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import site from '../data/site.json';
+import { photo } from '../lib/images';
+
+const approved = [
+  { name: 'hero-bw-stage.png', alt: 'Patrick Scott on stage' },
+  { name: 'closeup-mic.jpg', alt: 'Close up at the mic' },
+  { name: 'festival-stage.jpg', alt: 'Festival stage' },
+];
+---
+
+<Base
+  title="Press kit"
+  page="epk"
+  description="Press kit for Patrick Scott — bio, approved photos, set formats, booking contact."
+>
+  <div class="container section">
+    <SectionHeader eyebrow="Press kit" title="Patrick Scott">
+      <Button slot="action" variant="outline" href="/press-kit/">Download EPK</Button>
+    </SectionHeader>
+
+    <div class="epk">
+      <div>
+        <p class="epk__lead">
+          Atlanta-based performer known for genre-bending covers — hip hop reworked folk-style,
+          country, R&B, pop — built live with a loop pedal.
+        </p>
+        <p class="lede epk__body">
+          From brewery patios to festival stages, the set is designed to catch people off guard:
+          songs everyone knows, arranged in ways nobody expects.
+        </p>
+
+        <div class="epk__badges">
+          <Badge tone="accent">Live looping</Badge>
+          <Badge>Solo / duo / band</Badge>
+          <Badge>Atlanta, GA</Badge>
+        </div>
+
+        <div class="epk__photolabel mono">Approved photos</div>
+        <div class="epk__photos">
+          {
+            approved.map((p) => (
+              <Image
+                class="epk__photo photo"
+                src={photo(p.name)}
+                alt={p.alt}
+                widths={[300, 600]}
+                sizes="(min-width: 900px) 220px, 33vw"
+                loading="lazy"
+              />
+            ))
+          }
+        </div>
+        <p class="epk__todo mono">
+          TODO: point "Download EPK" at a hosted PDF or zip of these assets.
+        </p>
+      </div>
+
+      <div class="epk__cards">
+        <Card>
+          <div class="epk__cardlabel mono">Set formats</div>
+          <div class="epk__cardbody">
+            Solo looping (2–3 hrs) · Duo · Full band. PA and lighting available for private events.
+          </div>
+        </Card>
+
+        <Card>
+          <div class="epk__cardlabel mono">Contact</div>
+          <div class="epk__contact">
+            <a href={`mailto:${site.bookingEmail}`}>{site.bookingEmail}</a>
+          </div>
+        </Card>
+
+        <Card>
+          <div class="epk__cardlabel mono">Tips</div>
+          <div class="epk__cardbody">Enjoyed the show? Tip via Venmo.</div>
+          <div class="epk__cardaction">
+            <Button variant="outline" size="sm" data-dialog-open="tip-dialog">Venmo ↗</Button>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .epk {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    margin-top: var(--space-10);
+  }
+
+  @media (min-width: 900px) {
+    .epk {
+      grid-template-columns: 1.2fr 1fr;
+      gap: var(--space-12);
+    }
+  }
+
+  .epk__lead {
+    font-size: var(--text-lg);
+    line-height: var(--leading-body);
+  }
+
+  .epk__body {
+    margin-top: var(--space-4);
+  }
+
+  .epk__badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: var(--space-6) 0 var(--space-10);
+  }
+
+  .epk__photolabel {
+    color: var(--text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .epk__photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+
+  .epk__photo {
+    width: 100%;
+    height: 120px;
+  }
+
+  .epk__todo {
+    color: var(--text-accent);
+    margin-top: var(--space-4);
+    line-height: 1.7;
+  }
+
+  .epk__cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .epk__cardlabel {
+    color: var(--text-accent);
+  }
+
+  .epk__cardbody {
+    margin-top: 10px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .epk__contact {
+    margin-top: var(--space-1);
+    font-weight: 700;
+  }
+
+  .epk__contact a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    overflow-wrap: anywhere;
+  }
+
+  .epk__cardaction {
+    margin-top: var(--space-3);
+  }
+</style>

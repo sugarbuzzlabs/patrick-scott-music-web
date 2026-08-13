@@ -1,0 +1,254 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Badge from '../components/Badge.astro';
+import Input from '../components/Input.astro';
+import Select from '../components/Select.astro';
+import Textarea from '../components/Textarea.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import site from '../data/site.json';
+import { photo } from '../lib/images';
+
+/**
+ * TODO: Formspree.
+ * Set "formspreeId" in src/data/site.json (formspree.io → New form → the ID in
+ * https://formspree.io/f/XXXXXXXX). Until then the form composes a mailto: to
+ * the booking address instead of posting, so it still works on day one.
+ */
+const formspreeId = site.formspreeId;
+const wired = Boolean(formspreeId) && !formspreeId.startsWith('TODO_');
+const endpoint = wired ? `https://formspree.io/f/${formspreeId}` : undefined;
+
+const stage = photo('dark-stage-guitar.jpg');
+---
+
+<Base
+  title="Booking"
+  page="booking"
+  description="Book Patrick Scott — bars, breweries, festivals, weddings, private events. Solo looping sets, duo, or full band."
+>
+  <div class="container section booking">
+    <div class="booking__pitch">
+      <SectionHeader eyebrow="Booking" title="Bring the show to you" />
+      <p class="lede booking__copy">
+        Bars, breweries, festivals, weddings, private parties. Solo looping sets, duo, or full band.
+      </p>
+      <div class="booking__badges">
+        <Badge>Solo + loop pedal</Badge>
+        <Badge>Duo</Badge>
+        <Badge>Full band</Badge>
+      </div>
+      <Image
+        class="booking__photo photo"
+        src={stage}
+        alt="Live at a bar"
+        widths={[600, 1000]}
+        sizes="(min-width: 900px) 560px, 100vw"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="booking__formwrap">
+      <form
+        class="booking__form"
+        id="booking-form"
+        action={endpoint}
+        method="post"
+        data-wired={wired ? 'true' : 'false'}
+        data-mailto={site.bookingEmail}
+      >
+        <div class="booking__pair">
+          <Input label="Name" name="name" placeholder="Your name" required autocomplete="name" />
+          <Input
+            label="Email"
+            name="email"
+            type="email"
+            placeholder="you@example.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="booking__pair">
+          <Select
+            label="Event type"
+            name="event_type"
+            placeholder="Pick one"
+            required
+            options={['Bar / brewery', 'Festival', 'Wedding', 'Private party', 'Corporate']}
+          />
+          <Input label="Date" name="date" type="date" required />
+        </div>
+
+        <Textarea
+          label="Tell me about your event"
+          name="message"
+          rows={5}
+          placeholder="Venue, crowd, vibe, set length…"
+          required
+        />
+
+        <!-- Formspree conveniences: subject line + honeypot -->
+        <input type="hidden" name="_subject" value="Booking request — patrickscottmusic.com" />
+        <input class="visually-hidden" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+        <Button variant="solid" size="lg" type="submit" full>Send booking request</Button>
+
+        <p class="booking__error mono" data-form-error hidden role="alert">
+          That didn't send. Email <a href={`mailto:${site.bookingEmail}`}>{site.bookingEmail}</a> instead.
+        </p>
+
+        {
+          !wired && (
+            <p class="booking__todo mono">
+              TODO: set "formspreeId" in src/data/site.json. Until then this button opens your mail
+              client with the request pre-filled.
+            </p>
+          )
+        }
+      </form>
+
+      <div class="booking__sent" data-form-sent hidden>
+        <div class="booking__sentlabel mono">Request sent</div>
+        <p class="booking__senttitle">I'll get back to you within 48 hours.</p>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .booking {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+
+  @media (min-width: 900px) {
+    .booking {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+    }
+  }
+
+  .booking__copy {
+    margin: var(--space-6) 0;
+    max-width: 440px;
+  }
+
+  .booking__badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .booking__photo {
+    width: 100%;
+    height: 300px;
+    margin-top: var(--space-10);
+  }
+
+  .booking__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .booking__pair {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 560px) {
+    .booking__pair {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .booking__error {
+    color: var(--error);
+    line-height: 1.7;
+  }
+
+  .booking__error a {
+    color: var(--error);
+    text-decoration: underline;
+  }
+
+  .booking__todo {
+    color: var(--text-accent);
+    line-height: 1.7;
+  }
+
+  .booking__sent {
+    border: 1px solid var(--border-accent);
+    padding: var(--space-10);
+    text-align: center;
+  }
+
+  .booking__sentlabel {
+    color: var(--text-accent);
+  }
+
+  .booking__senttitle {
+    font-weight: 700;
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    margin-top: var(--space-3);
+  }
+</style>
+
+<script>
+  const form = document.getElementById('booking-form') as HTMLFormElement | null;
+  if (form) {
+    const wrap = form.parentElement!;
+    const sent = wrap.querySelector<HTMLElement>('[data-form-sent]');
+    const error = form.querySelector<HTMLElement>('[data-form-error]');
+    const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+    const showSent = () => {
+      form.hidden = true;
+      if (sent) sent.hidden = false;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const data = new FormData(form);
+
+      // No Formspree ID yet: hand the request to the user's mail client.
+      if (form.dataset.wired !== 'true') {
+        const to = form.dataset.mailto!;
+        const body = [
+          `Name: ${data.get('name') ?? ''}`,
+          `Email: ${data.get('email') ?? ''}`,
+          `Event type: ${data.get('event_type') ?? ''}`,
+          `Date: ${data.get('date') ?? ''}`,
+          '',
+          String(data.get('message') ?? ''),
+        ].join('\n');
+        window.location.href =
+          `mailto:${to}?subject=${encodeURIComponent('Booking request')}&body=${encodeURIComponent(body)}`;
+        showSent();
+        return;
+      }
+
+      if (error) error.hidden = true;
+      if (submit) submit.disabled = true;
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        showSent();
+      } catch {
+        if (error) error.hidden = false;
+        if (submit) submit.disabled = false;
+      }
+    });
+  }
+</script>

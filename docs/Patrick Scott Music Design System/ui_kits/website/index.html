@@ -1,0 +1,74 @@
+<!-- @dsCard group="Website" viewport="1440x900" subtitle="patrickscottmusic.com — home, booking, press kit" name="Website UI kit" -->
+<!DOCTYPE html><html><head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patrick Scott Music</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+<script src="../../ds-loader.js"></script>
+<style>
+body{margin:0;background:var(--surface-page);font-family:var(--font-body);color:var(--text-primary);-webkit-font-smoothing:antialiased}
+a{color:var(--text-primary)} a:hover{color:var(--accent)}
+</style>
+</head><body><div id="root"></div>
+<script>
+window.__dsReady = loadDS('../../').then((ns) => { window.__NS = ns; });
+</script>
+<script type="text/babel" src="Home.jsx"></script>
+<script type="text/babel" src="Booking.jsx"></script>
+<script type="text/babel" src="PressKit.jsx"></script>
+<script type="text/babel">
+let Button, Dialog, Input;
+const mono = { fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 500, letterSpacing: '0.14em', textTransform: 'uppercase' };
+function Nav({ page, go, onTip }) {
+  const items = [['home', 'Home'], ['booking', 'Booking'], ['epk', 'Press kit']];
+  return (
+    <div style={{ position: 'sticky', top: 0, zIndex: 50, background: 'rgba(12,11,10,0.8)', backdropFilter: 'blur(12px)', borderBottom: '1px solid var(--border-subtle)' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '14px 32px', display: 'flex', alignItems: 'center', gap: 28 }}>
+        <a onClick={() => go('home')} style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', textDecoration: 'none' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 400, fontSize: 15, letterSpacing: '0.08em' }}>PATRICK SCOTT<span style={{ color: 'var(--text-accent)' }}>/</span>MUSIC</span>
+        </a>
+        <div style={{ flex: 1 }}></div>
+        {items.map(([id, label]) => (
+          <a key={id} onClick={() => go(id)} style={{ ...mono, cursor: 'pointer', textDecoration: 'none', color: page === id ? 'var(--text-accent)' : 'var(--text-secondary)', paddingBottom: 2, borderBottom: page === id ? '2px solid var(--accent)' : '2px solid transparent' }}>{label}</a>
+        ))}
+        <Button variant="solid" size="sm" onClick={onTip}>Tip</Button>
+      </div>
+    </div>
+  );
+}
+function Footer() {
+  return (
+    <div style={{ borderTop: '1px solid var(--border-subtle)', textAlign: 'center', padding: '40px 32px' }}>
+      <div style={{ fontWeight: 800, fontStretch: '120%', textTransform: 'uppercase', fontSize: 16 }}>Patrick Scott</div>
+      <div style={{ ...mono, color: 'var(--text-muted)', marginTop: 10 }}>© 2026 · patrickscottmusic.com · booking@patrickscottmusic.com</div>
+    </div>
+  );
+}
+function App() {
+  const [page, setPage] = React.useState('home');
+  const [tip, setTip] = React.useState(false);
+  const go = (p) => { setPage(p); window.scrollTo(0, 0); };
+  return (
+    <div>
+      <Nav page={page} go={go} onTip={() => setTip(true)} />
+      {page === 'home' && <window.Home go={go} />}
+      {page === 'booking' && <window.Booking />}
+      {page === 'epk' && <window.PressKit />}
+      <Footer />
+      <Dialog open={tip} onClose={() => setTip(false)} title="Tip the band">
+        <p style={{ color: 'var(--text-secondary)', lineHeight: 1.55, marginTop: 0 }}>Enjoyed the show? Tips keep the covers coming.</p>
+        <div style={{ display: 'flex', gap: 12 }}>
+          <Button variant="solid" href="https://venmo.com" full>Venmo ↗</Button>
+          <Button variant="outline" href="https://paypal.me" full>PayPal ↗</Button>
+        </div>
+      </Dialog>
+    </div>
+  );
+}
+window.__dsReady.then(() => {
+  ({ Button, Dialog, Input } = window.__NS);
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+});
+</script></body></html>

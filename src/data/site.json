@@ -1,0 +1,21 @@
+{
+  "name": "Patrick Scott",
+  "url": "https://patrickscottmusic.com",
+  "domain": "patrickscottmusic.com",
+  "tagline": "Live looping, genre-bending covers. Atlanta.",
+  "description": "Atlanta-based live performer. Genre-bending covers built live with a loop pedal. Bars, breweries, festivals, weddings, private events.",
+  "bookingEmail": "booking@patrickscottmusic.com",
+
+  "_comment_formspree": "TODO: replace with your Formspree form ID (formspree.io -> New Form -> copy the ID from the endpoint https://formspree.io/f/XXXXXXXX). Until then the booking form falls back to a mailto: link.",
+  "formspreeId": "TODO_FORMSPREE_ID",
+
+  "_comment_venmo": "TODO: replace with your Venmo handle, no @ sign. The tip QR code is generated from this at build time.",
+  "venmoHandle": "TODO_VENMO_HANDLE",
+
+  "_comment_paypal": "Optional. TODO: replace with your PayPal.me handle, or set to null to hide the PayPal button.",
+  "paypalHandle": "TODO_PAYPAL_HANDLE",
+
+  "_comment_newsletter": "TODO: replace action with your mailing-list provider's form endpoint (Mailchimp / ConvertKit / Buttondown). See README > Email signup. Leave as null to keep the stub behavior.",
+  "newsletterAction": null,
+  "newsletterEmailField": "email"
+}

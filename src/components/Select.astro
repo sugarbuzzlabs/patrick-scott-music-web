@@ -1,0 +1,69 @@
+---
+/** Select — port of components/core/Select.jsx */
+interface Props {
+  label?: string;
+  name?: string;
+  options?: string[];
+  placeholder?: string;
+  required?: boolean;
+  class?: string;
+}
+
+const { label, name, options = [], placeholder, required = false, class: className = '' } = Astro.props;
+const id = name ? `field-${name}` : undefined;
+---
+
+<div class={`field ${className}`}>
+  {label && <label class="field__label mono" for={id}>{label}</label>}
+  <select class="field__control" id={id} name={name} required={required}>
+    {placeholder && <option value="">{placeholder}</option>}
+    {options.map((o: string) => <option value={o}>{o}</option>)}
+  </select>
+</div>
+
+<style>
+  .field {
+    display: block;
+  }
+
+  .field__label {
+    display: block;
+    color: var(--text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .field__control {
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--surface-raised);
+    appearance: none;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    padding: var(--space-3) 14px;
+    min-height: 48px;
+    outline: none;
+    transition: border-color var(--dur) var(--ease);
+    /* chevron drawn from two token-colored wedges (matches reference component) */
+    background-image:
+      linear-gradient(45deg, transparent 49%, var(--gray-400) 50%),
+      linear-gradient(135deg, var(--gray-400) 50%, transparent 51%);
+    background-position:
+      calc(100% - 20px) 55%,
+      calc(100% - 14px) 55%;
+    background-size: 6px 6px;
+    background-repeat: no-repeat;
+  }
+
+  .field__control:focus {
+    border-color: var(--focus-ring);
+  }
+
+  /* native option list renders on the OS surface — keep it legible */
+  .field__control option {
+    background: var(--surface-raised);
+    color: var(--text-primary);
+  }
+</style>

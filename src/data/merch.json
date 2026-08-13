@@ -1,0 +1,26 @@
+[
+  {
+    "kind": "Tee",
+    "title": "Any song. His way.",
+    "price": "$28",
+    "image": "truck-banner.jpg",
+    "imageAlt": "Tour tee",
+    "href": "#"
+  },
+  {
+    "kind": "Hat",
+    "title": "PS monogram cap",
+    "price": "$25",
+    "image": "dark-stage-guitar.jpg",
+    "imageAlt": "Monogram cap",
+    "href": "#"
+  },
+  {
+    "kind": "Poster",
+    "title": "Stage print, 18×24",
+    "price": "$20",
+    "image": "hero-bw-stage-square.png",
+    "imageAlt": "Stage poster print",
+    "href": "#"
+  }
+]

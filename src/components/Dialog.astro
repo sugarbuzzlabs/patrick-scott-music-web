@@ -1,0 +1,108 @@
+---
+/**
+ * Dialog — port of components/core/Dialog.jsx onto the native <dialog>
+ * element, so focus trapping, Esc-to-close and inertness come from the
+ * platform instead of JS. Open it with `document.getElementById(id).showModal()`.
+ */
+interface Props {
+  id: string;
+  title?: string;
+  width?: number;
+}
+const { id, title, width = 480 } = Astro.props;
+---
+
+<dialog class="dlg" id={id} style={`--dlg-width:${width}px`} aria-labelledby={title ? `${id}-title` : undefined}>
+  <div class="dlg__head">
+    {title && <h2 class="dlg__title" id={`${id}-title`}>{title}</h2>}
+    <button class="dlg__close" type="button" aria-label="Close" data-dlg-close>×</button>
+  </div>
+  <slot />
+</dialog>
+
+<style>
+  .dlg {
+    width: var(--dlg-width);
+    max-width: 92vw;
+    background: var(--surface-raised);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-none);
+    box-shadow: var(--shadow-pop);
+    color: var(--text-primary);
+    padding: var(--space-8);
+    margin: auto;
+  }
+
+  .dlg::backdrop {
+    background: rgba(12, 11, 10, 0.8);
+    backdrop-filter: blur(4px);
+  }
+
+  .dlg[open] {
+    animation: dlg-in var(--dur) var(--ease);
+  }
+
+  @keyframes dlg-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .dlg__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .dlg__title {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .dlg__close {
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    width: 44px;
+    height: 44px;
+    flex: none;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    border-radius: var(--radius-none);
+    transition:
+      border-color var(--dur) var(--ease),
+      color var(--dur) var(--ease);
+  }
+
+  .dlg__close:hover {
+    border-color: var(--border-strong);
+    color: var(--text-accent);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLDialogElement>('dialog.dlg').forEach((dlg) => {
+    dlg.querySelector('[data-dlg-close]')?.addEventListener('click', () => dlg.close());
+    // click on the backdrop (i.e. outside the dialog box) closes
+    dlg.addEventListener('click', (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+  });
+
+  // Any element with data-dialog-open="<id>" opens that dialog.
+  document.querySelectorAll<HTMLElement>('[data-dialog-open]').forEach((trigger) => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.getElementById(trigger.dataset.dialogOpen!);
+      if (target instanceof HTMLDialogElement) target.showModal();
+    });
+  });
+</script>

@@ -1,0 +1,11 @@
+<!-- @dsCard group="Spacing" viewport="700x150" subtitle="120–200ms, ease(0.2,0,0,1), fades only" name="Motion & states" -->
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../styles.css"><style>
+body{margin:0;background:var(--surface-page);font-family:var(--font-body);color:var(--text-primary);-webkit-font-smoothing:antialiased}
+.row{display:flex;gap:12px;padding:20px}
+.mono{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+</style></head><body>
+<div style="padding:24px;display:flex;gap:12px">
+  <a href="#" style="color:var(--text-primary);text-decoration:none;font-weight:600;border-bottom:2px solid transparent;transition:border-color 200ms cubic-bezier(.2,0,0,1)" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='transparent'">Hover: accent underline</a>
+  <div style="flex:1"></div>
+  <div class="mono" style="align-self:center">--dur-fast 120MS · --dur 200MS · NO BOUNCES · OPACITY/TRANSLATE ONLY</div>
+</div></body></html>

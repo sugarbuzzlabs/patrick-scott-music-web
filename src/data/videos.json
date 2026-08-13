@@ -1,0 +1,23 @@
+[
+  {
+    "kind": "Festival",
+    "title": "Full band, ACS Festival",
+    "image": "festival-stage.jpg",
+    "imageAlt": "Festival set",
+    "href": "#"
+  },
+  {
+    "kind": "Solo loop",
+    "title": "90s hip hop, gone folk",
+    "image": "closeup-mic.jpg",
+    "imageAlt": "Bar set",
+    "href": "#"
+  },
+  {
+    "kind": "Duo",
+    "title": "Patio sessions",
+    "image": "patio-duo.jpg",
+    "imageAlt": "Patio duo",
+    "href": "#"
+  }
+]

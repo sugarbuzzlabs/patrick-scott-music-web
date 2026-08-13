@@ -1,0 +1,121 @@
+---
+import Button from './Button.astro';
+import Input from './Input.astro';
+import site from '../data/site.json';
+
+/**
+ * TODO: mailing-list provider.
+ * Set "newsletterAction" in src/data/site.json to your provider's form POST
+ * endpoint and "newsletterEmailField" to the field name it expects:
+ *   Mailchimp    action: https://<user>.us1.list-manage.com/subscribe/post?u=...&id=...   field: EMAIL
+ *   ConvertKit   action: https://app.convertkit.com/forms/<form-id>/subscriptions        field: email_address
+ *   Buttondown   action: https://buttondown.email/api/emails/embed-subscribe/<user>      field: email
+ * Until it's set, the form is inert and shows the notice below instead of posting.
+ */
+const action = site.newsletterAction;
+const field = site.newsletterEmailField || 'email';
+const wired = Boolean(action);
+---
+
+<section class="signup rule-top" aria-labelledby="signup-title">
+  <div class="signup__inner">
+    <h2 class="signup__title" id="signup-title">New shows, first.</h2>
+
+    <form
+      class="signup__form"
+      action={action ?? undefined}
+      method="post"
+      target={wired ? '_blank' : undefined}
+      data-wired={wired ? 'true' : 'false'}
+    >
+      <Input
+        class="signup__field"
+        type="email"
+        name={field}
+        placeholder="you@example.com"
+        required
+        autocomplete="email"
+        aria-label="Email address"
+      />
+      <Button variant="solid" type="submit">Sign up</Button>
+    </form>
+
+    <p class="signup__status mono" data-signup-status hidden>You're on the list.</p>
+
+    {
+      !wired && (
+        <p class="signup__todo mono">
+          TODO: connect your mailing-list provider — set "newsletterAction" in src/data/site.json.
+        </p>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .signup {
+    background: var(--surface-raised);
+  }
+
+  .signup__inner {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: var(--space-16) var(--space-5);
+    text-align: center;
+  }
+
+  @media (min-width: 900px) {
+    .signup__inner {
+      padding: 72px var(--space-8);
+    }
+  }
+
+  .signup__title {
+    font-size: clamp(30px, 8vw, var(--text-3xl));
+  }
+
+  .signup__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: var(--space-7);
+    text-align: left;
+  }
+
+  @media (min-width: 520px) {
+    .signup__form {
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .signup__form :global(.signup__field) {
+      flex: 1;
+    }
+  }
+
+  .signup__status {
+    color: var(--text-accent);
+    margin-top: var(--space-6);
+  }
+
+  .signup__todo {
+    color: var(--text-accent);
+    margin-top: var(--space-5);
+    line-height: 1.7;
+  }
+</style>
+
+<script>
+  // Until a provider endpoint is configured the form must not navigate anywhere;
+  // acknowledge the submit in place instead, matching the mockup's subbed state.
+  document.querySelectorAll<HTMLFormElement>('.signup__form').forEach((form) => {
+    if (form.dataset.wired === 'true') return;
+    const status = form.parentElement?.querySelector<HTMLElement>('[data-signup-status]');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      form.hidden = true;
+      if (status) status.hidden = false;
+    });
+  });
+</script>

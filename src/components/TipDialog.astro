@@ -1,0 +1,78 @@
+---
+import Dialog from './Dialog.astro';
+import Button from './Button.astro';
+import site from '../data/site.json';
+import { venmoUrl, paypalUrl, qrSvg, isPlaceholder } from '../lib/tips';
+
+const venmo = venmoUrl(site.venmoHandle);
+const paypal = paypalUrl(site.paypalHandle);
+const qr = await qrSvg(venmo);
+const venmoTodo = isPlaceholder(site.venmoHandle);
+---
+
+<Dialog id="tip-dialog" title="Tip the band">
+  <p class="tip__lede">Enjoyed the show? Tips keep the covers coming.</p>
+
+  <div class="tip__qr">
+    <Fragment set:html={qr} />
+    <div class="tip__qrcap mono">Scan to tip</div>
+  </div>
+
+  {
+    venmoTodo && (
+      <p class="tip__todo mono">
+        TODO: set "venmoHandle" in src/data/site.json — the QR code and links are generated from it.
+      </p>
+    )
+  }
+
+  <div class="tip__actions">
+    <Button variant="solid" href={venmo} external full>Venmo ↗</Button>
+    {paypal && <Button variant="outline" href={paypal} external full>PayPal ↗</Button>}
+  </div>
+</Dialog>
+
+<style>
+  .tip__lede {
+    color: var(--text-secondary);
+    line-height: var(--leading-body);
+    margin-bottom: var(--space-6);
+  }
+
+  .tip__qr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    border: 1px solid var(--border-subtle);
+    margin-bottom: var(--space-6);
+  }
+
+  /* QR is drawn in --paper on --ink for scan contrast; see lib/tips.ts */
+  .tip__qr :global(svg) {
+    width: 160px;
+    height: 160px;
+    display: block;
+  }
+
+  .tip__qrcap {
+    color: var(--text-muted);
+  }
+
+  .tip__todo {
+    color: var(--text-accent);
+    line-height: 1.6;
+    margin-bottom: var(--space-5);
+  }
+
+  .tip__actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .tip__actions > :global(*) {
+    flex: 1 1 140px;
+  }
+</style>

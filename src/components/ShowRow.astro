@@ -1,0 +1,159 @@
+---
+/** ShowRow — port of components/music/ShowRow.jsx */
+interface Props {
+  date: string;
+  isoDate?: string;
+  time?: string | null;
+  venue: string;
+  city: string;
+  note?: string | null;
+  ticketHref?: string | null;
+  soldOut?: boolean;
+}
+
+const { date, isoDate, time, venue, city, note, ticketHref, soldOut = false } = Astro.props;
+---
+
+<div class={`showrow ${soldOut ? 'showrow--sold' : ''}`}>
+  <div class="showrow__when">
+    {
+      isoDate ? (
+        <time class="showrow__date mono" datetime={isoDate}>
+          {date}
+        </time>
+      ) : (
+        <div class="showrow__date mono">{date}</div>
+      )
+    }
+    {time && <div class="showrow__time mono">{time}</div>}
+  </div>
+
+  <div class="showrow__what">
+    <div class="showrow__venue">{venue}</div>
+    <div class="showrow__city mono">{city}{note ? ` · ${note}` : ''}</div>
+  </div>
+
+  <div class="showrow__cta">
+    {
+      soldOut ? (
+        <span class="showrow__tag mono">Sold out</span>
+      ) : ticketHref ? (
+        <a class="showrow__ticket mono" href={ticketHref}>
+          Tickets<span class="visually-hidden"> for {venue} on {date}</span>
+        </a>
+      ) : (
+        <span class="showrow__free mono">Free show</span>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .showrow {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'when cta'
+      'what what';
+    gap: var(--space-3) var(--space-4);
+    align-items: center;
+    padding: var(--space-5) var(--space-2);
+    border-bottom: 1px solid var(--border-subtle);
+    transition:
+      background var(--dur) var(--ease),
+      border-color var(--dur) var(--ease);
+  }
+
+  @media (min-width: 720px) {
+    .showrow {
+      grid-template-columns: 150px 1fr auto;
+      grid-template-areas: 'when what cta';
+      gap: var(--space-6);
+      padding: var(--space-5) var(--space-4);
+    }
+  }
+
+  .showrow:hover {
+    background: var(--ink-900);
+    border-bottom-color: var(--border-strong);
+  }
+
+  .showrow--sold {
+    opacity: 0.55;
+  }
+
+  .showrow__when {
+    grid-area: when;
+  }
+  .showrow__what {
+    grid-area: what;
+  }
+  .showrow__cta {
+    grid-area: cta;
+    justify-self: end;
+  }
+
+  .showrow__date {
+    color: var(--text-accent);
+    letter-spacing: 0.12em;
+    display: block;
+  }
+
+  .showrow__time {
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    margin-top: var(--space-1);
+  }
+
+  .showrow__venue {
+    font-weight: 700;
+    font-size: var(--text-lg);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: var(--leading-snug);
+  }
+
+  .showrow__city {
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    margin-top: var(--space-1);
+  }
+
+  .showrow__tag,
+  .showrow__free,
+  .showrow__ticket {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.12em;
+    min-height: 44px;
+    padding: var(--space-2) 14px;
+    white-space: nowrap;
+  }
+
+  .showrow__tag {
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .showrow__free {
+    color: var(--text-secondary);
+  }
+
+  .showrow__ticket {
+    color: var(--text-primary);
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    text-decoration: none;
+    transition: all var(--dur) var(--ease);
+  }
+
+  /* row hover fills the ticket button — matches the reference component */
+  .showrow:hover .showrow__ticket,
+  .showrow__ticket:hover,
+  .showrow__ticket:focus-visible {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--text-on-accent);
+  }
+</style>

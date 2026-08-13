@@ -1,0 +1,61 @@
+---
+/** Textarea — port of components/core/Textarea.jsx */
+interface Props {
+  label?: string;
+  name?: string;
+  placeholder?: string;
+  rows?: number;
+  required?: boolean;
+  class?: string;
+}
+
+const { label, name, placeholder, rows = 4, required = false, class: className = '' } = Astro.props;
+const id = name ? `field-${name}` : undefined;
+---
+
+<div class={`field ${className}`}>
+  {label && <label class="field__label mono" for={id}>{label}</label>}
+  <textarea
+    class="field__control"
+    id={id}
+    name={name}
+    placeholder={placeholder}
+    rows={rows}
+    required={required}></textarea>
+</div>
+
+<style>
+  .field {
+    display: block;
+  }
+
+  .field__label {
+    display: block;
+    color: var(--text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .field__control {
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--surface-raised);
+    resize: vertical;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-body);
+    padding: var(--space-3) 14px;
+    outline: none;
+    transition: border-color var(--dur) var(--ease);
+  }
+
+  .field__control::placeholder {
+    color: var(--text-muted);
+  }
+
+  .field__control:focus {
+    border-color: var(--focus-ring);
+  }
+</style>

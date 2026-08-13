@@ -1,0 +1,27 @@
+:root {
+  --font-display: 'Archivo', 'Helvetica Neue', sans-serif;
+  --font-body: 'Archivo', 'Helvetica Neue', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', monospace;
+  /* Display: uppercase, heavy, expanded (font-stretch) */
+  --display-weight: 800;
+  --display-stretch: 120%;
+  --display-tracking: -0.01em;
+  --display-transform: uppercase; /* @kind other */
+  /* Mono labels (eyebrows, dates, meta) */
+  --label-tracking: 0.14em;
+  --label-size: 12px;
+  /* Scale */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 22px;
+  --text-2xl: 28px;
+  --text-3xl: 38px;
+  --text-4xl: 52px;
+  --text-5xl: 72px;
+  --text-6xl: 104px;
+  --leading-tight: 0.95;
+  --leading-snug: 1.15;
+  --leading-body: 1.55;
+}

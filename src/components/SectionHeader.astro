@@ -1,0 +1,43 @@
+---
+/** SectionHeader — port of components/music/SectionHeader.jsx */
+interface Props {
+  eyebrow?: string;
+  title: string;
+  id?: string;
+  class?: string;
+}
+const { eyebrow, title, id, class: className = '' } = Astro.props;
+const hasAction = Astro.slots.has('action');
+---
+
+<div class={`sechead ${className}`}>
+  <div>
+    {eyebrow && <div class="sechead__eyebrow mono">{eyebrow}</div>}
+    <h2 class="sechead__title" id={id}>{title}</h2>
+  </div>
+  {hasAction && <div class="sechead__action"><slot name="action" /></div>}
+</div>
+
+<style>
+  .sechead {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .sechead__eyebrow {
+    color: var(--text-accent);
+    margin-bottom: var(--space-3);
+  }
+
+  .sechead__title {
+    /* --text-4xl (52px) on desktop, scaled down mobile-first */
+    font-size: clamp(32px, 7vw, var(--text-4xl));
+  }
+
+  .sechead__action {
+    flex: none;
+  }
+</style>

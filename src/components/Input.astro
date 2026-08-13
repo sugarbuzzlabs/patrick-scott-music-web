@@ -1,0 +1,105 @@
+---
+/** Input — port of components/core/Input.jsx */
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props {
+  label?: string;
+  type?: HTMLAttributes<'input'>['type'];
+  name?: string;
+  placeholder?: string;
+  value?: string;
+  required?: boolean;
+  error?: string;
+  autocomplete?: string;
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  label,
+  type = 'text',
+  name,
+  placeholder,
+  value,
+  required = false,
+  error,
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+const id = name ? `field-${name}` : undefined;
+---
+
+<div class={`field ${className}`}>
+  {
+    label && (
+      <label class={`field__label mono ${error ? 'field__label--error' : ''}`} for={id}>
+        {label}
+      </label>
+    )
+  }
+  <input
+    class={`field__control ${error ? 'field__control--error' : ''}`}
+    id={id}
+    type={type}
+    name={name}
+    placeholder={placeholder}
+    value={value}
+    required={required}
+    aria-invalid={error ? 'true' : undefined}
+    aria-describedby={error && id ? `${id}-error` : undefined}
+    {...rest}
+  />
+  {error && <span class="field__error" id={id ? `${id}-error` : undefined}>{error}</span>}
+</div>
+
+<style>
+  .field {
+    display: block;
+  }
+
+  .field__label {
+    display: block;
+    color: var(--text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .field__label--error {
+    color: var(--error);
+  }
+
+  .field__control {
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--surface-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    /* 16px keeps iOS from zooming on focus */
+    font-size: var(--text-base);
+    padding: var(--space-3) 14px;
+    min-height: 48px;
+    outline: none;
+    transition: border-color var(--dur) var(--ease);
+  }
+
+  .field__control::placeholder {
+    color: var(--text-muted);
+  }
+
+  .field__control:focus {
+    border-color: var(--focus-ring);
+  }
+
+  .field__control--error {
+    border-color: var(--error);
+  }
+
+  .field__error {
+    display: block;
+    font-size: 13px;
+    color: var(--error);
+    margin-top: var(--space-1);
+  }
+</style>

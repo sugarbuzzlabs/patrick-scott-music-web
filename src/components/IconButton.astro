@@ -1,0 +1,49 @@
+---
+/** IconButton — port of components/core/IconButton.jsx */
+interface Props {
+  label: string;
+  href?: string;
+  size?: number;
+  external?: boolean;
+  class?: string;
+}
+const { label, href, size = 44, external = false, class: className = '' } = Astro.props;
+const Tag = href ? 'a' : 'button';
+const extAttrs = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+---
+
+<Tag
+  class={`iconbtn ${className}`}
+  href={href}
+  type={href ? undefined : 'button'}
+  aria-label={label}
+  title={label}
+  style={`--iconbtn-size:${size}px`}
+  {...extAttrs}
+>
+  <slot />
+</Tag>
+
+<style>
+  .iconbtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* ≥44px touch target */
+    width: max(var(--iconbtn-size), 44px);
+    height: max(var(--iconbtn-size), 44px);
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    cursor: pointer;
+    border-radius: var(--radius-none);
+    box-sizing: border-box;
+    transition: all var(--dur) var(--ease);
+  }
+
+  .iconbtn:hover {
+    background: var(--ink-800);
+    border-color: var(--border-strong);
+    color: var(--text-accent);
+  }
+</style>

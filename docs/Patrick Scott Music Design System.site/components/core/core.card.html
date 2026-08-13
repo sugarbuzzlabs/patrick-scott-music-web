@@ -1,0 +1,44 @@
+<!-- @dsCard group="Components" viewport="700x400" name="Core components" -->
+<!DOCTYPE html><html><head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+<script src="../../ds-loader.js"></script>
+<style>body{margin:0;background:var(--surface-page);font-family:var(--font-body);color:var(--text-primary);-webkit-font-smoothing:antialiased}</style>
+</head><body><div id="root"></div>
+<script>
+loadDS('../../').then((NS) => {
+  const { Button, IconButton, Input, Select, Textarea, Badge, Card, Tabs, Dialog, ShowRow, SectionHeader, PlatformLink } = NS;
+  const src = document.getElementById('demo-src').textContent;
+  const code = Babel.transform(src, { presets: [['react', { runtime: 'classic' }]] }).code;
+  const Demo = new Function('React', 'Button', 'IconButton', 'Input', 'Select', 'Textarea', 'Badge', 'Card', 'Tabs', 'Dialog', 'ShowRow', 'SectionHeader', 'PlatformLink', code + '\nreturn Demo;')(React, Button, IconButton, Input, Select, Textarea, Badge, Card, Tabs, Dialog, ShowRow, SectionHeader, PlatformLink);
+  ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(Demo));
+});
+</script>
+<script type="text/plain" id="demo-src">
+function Demo() {
+
+  const [tab, setTab] = React.useState('Upcoming');
+  return (
+    <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 20 }}>
+      <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
+        <Button variant="solid">Book a show</Button>
+        <Button variant="outline">All dates</Button>
+        <Button variant="ghost">Press kit</Button>
+        <Button variant="solid" disabled>Sold out</Button>
+        <Button variant="solid" size="sm">Small</Button>
+        <IconButton label="Instagram"><span style={{fontFamily:'var(--font-mono)',fontSize:11}}>IG</span></IconButton>
+      </div>
+      <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+        <Badge tone="live">Tonight</Badge><Badge tone="accent">New</Badge><Badge>Free show</Badge><Badge tone="sold">Sold out</Badge>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+        <Input label="Email" placeholder="you@example.com" />
+        <Select label="Event type" placeholder="Pick one" options={['Bar / brewery', 'Wedding', 'Private party']} />
+      </div>
+      <Tabs tabs={['Upcoming', 'Past', 'Private']} active={tab} onChange={setTab} />
+    </div>
+  );
+}
+</script></body></html>

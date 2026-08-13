@@ -1,0 +1,36 @@
+:root {
+  /* Base — warm near-blacks (stage dark) */
+  --ink-950: #0C0B0A;
+  --ink-900: #131211;
+  --ink-800: #1C1A18;
+  --ink-700: #282521;
+  --ink-600: #3A362F;
+  /* Base — toned whites */
+  --paper: #F4F1EA;
+  --paper-dim: #DAD5CA;
+  --gray-300: #B4AC9E;
+  --gray-400: #8F887B;
+  --gray-500: #6E675C;
+  /* Accent — stage-light amber */
+  --accent: #E0A83E;
+  --accent-strong: #F2BE55;
+  --accent-deep: #B77F1E;
+  /* Semantic status */
+  --ok: #7A9E7E;
+  --error: #C4553B;
+  /* Semantic aliases (dark-first) */
+  --surface-page: var(--ink-950);
+  --surface-raised: var(--ink-900);
+  --surface-card: var(--ink-800);
+  --surface-light: var(--paper);
+  --border-subtle: rgba(244, 241, 234, 0.12);
+  --border-strong: rgba(244, 241, 234, 0.28);
+  --border-accent: var(--accent);
+  --text-primary: var(--paper);
+  --text-secondary: var(--gray-300);
+  --text-muted: var(--gray-400);
+  --text-accent: var(--accent);
+  --text-on-accent: var(--ink-950);
+  --text-on-light: var(--ink-950);
+  --focus-ring: var(--accent);
+}

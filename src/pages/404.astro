@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+---
+
+<Base title="Not found" description="That page doesn't exist.">
+  <div class="container section notfound">
+    <p class="notfound__eyebrow mono">404</p>
+    <h1 class="notfound__title">Wrong room.</h1>
+    <p class="lede notfound__copy">That page isn't here. The dates are.</p>
+    <div class="notfound__actions">
+      <Button variant="solid" size="lg" href="/#shows">See dates</Button>
+      <Button variant="outline" size="lg" href="/">Home</Button>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .notfound {
+    min-height: 50svh;
+  }
+
+  .notfound__eyebrow {
+    color: var(--text-accent);
+    margin-bottom: var(--space-4);
+  }
+
+  .notfound__title {
+    font-size: clamp(44px, 11vw, var(--text-5xl));
+  }
+
+  .notfound__copy {
+    margin-top: var(--space-5);
+  }
+
+  .notfound__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+</style>
