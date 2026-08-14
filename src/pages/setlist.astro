@@ -1,0 +1,409 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import songsData from '../data/songs.json';
+
+const songs = songsData.songs;
+---
+
+<Base
+  title="Request a song"
+  description="Pick a song and Patrick will work it into the set."
+>
+  <div class="container section">
+    <SectionHeader eyebrow="Live requests" title="Pick a song" />
+    <p class="lede req__lede">Choose one and I'll work it into the set.</p>
+
+    <div class="req__closed mono" data-closed hidden>Requests are closed right now.</div>
+
+    <!-- Queue -->
+    <section class="req__queue" aria-labelledby="queue-title" data-queue-section hidden>
+      <h2 class="req__subtitle" id="queue-title">Up next</h2>
+      <ol class="req__list" data-queue></ol>
+    </section>
+
+    <!-- Song list -->
+    <section aria-labelledby="songs-title">
+      <h2 class="req__subtitle" id="songs-title">The list</h2>
+
+      <div class="req__field">
+        <label class="req__label mono" for="req-name">Your name (optional)</label>
+        <input
+          class="req__input"
+          id="req-name"
+          type="text"
+          maxlength="40"
+          placeholder="So I can give you a shout"
+          autocomplete="given-name"
+        />
+      </div>
+
+      <ul class="req__songs">
+        {
+          songs.map((s) => (
+            <li class="req__song">
+              <button
+                class="req__pick"
+                type="button"
+                data-song={s.title}
+                data-artist={s.artist}
+              >
+                <span class="req__picktext">
+                  <span class="req__title">{s.title}</span>
+                  <span class="req__artist mono">{s.artist}</span>
+                </span>
+                <span class="req__add mono" aria-hidden="true">Request</span>
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <p class="req__status mono" data-status role="status" aria-live="polite" hidden></p>
+  </div>
+</Base>
+
+<style>
+  .req__lede {
+    margin-top: var(--space-5);
+  }
+
+  .req__subtitle {
+    font-size: var(--text-xl);
+    margin: var(--space-12) 0 var(--space-5);
+  }
+
+  .req__closed {
+    color: var(--text-accent);
+    border: 1px solid var(--border-accent);
+    padding: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  .req__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: q;
+  }
+
+  :global(.req__entry) {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-2);
+    border-bottom: 1px solid var(--border-subtle);
+    counter-increment: q;
+  }
+
+  :global(.req__entry)::before {
+    content: counter(q);
+    font-family: var(--font-mono);
+    font-size: var(--label-size);
+    letter-spacing: var(--label-tracking);
+    color: var(--text-accent);
+    min-width: 2ch;
+  }
+
+  :global(.req__entry--next) {
+    border-left: 2px solid var(--accent);
+    padding-left: var(--space-3);
+  }
+
+  :global(.req__entrymain) {
+    flex: 1;
+    min-width: 0;
+  }
+
+  :global(.req__entrysong) {
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: var(--leading-snug);
+  }
+
+  :global(.req__entrymeta) {
+    font-family: var(--font-mono);
+    font-size: var(--label-size);
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: var(--space-1);
+  }
+
+  :global(.req__votes) {
+    font-family: var(--font-mono);
+    font-size: var(--label-size);
+    letter-spacing: var(--label-tracking);
+    color: var(--text-accent);
+    border: 1px solid var(--border-subtle);
+    padding: var(--space-1) var(--space-2);
+    white-space: nowrap;
+  }
+
+  .req__field {
+    max-width: 360px;
+    margin-bottom: var(--space-6);
+  }
+
+  .req__label {
+    display: block;
+    color: var(--text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .req__input {
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--surface-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    padding: var(--space-3) 14px;
+    min-height: 48px;
+    outline: none;
+    transition: border-color var(--dur) var(--ease);
+  }
+
+  .req__input:focus {
+    border-color: var(--focus-ring);
+  }
+
+  .req__songs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .req__pick {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    text-align: left;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    padding: var(--space-4) var(--space-2);
+    min-height: 64px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background var(--dur) var(--ease);
+  }
+
+  .req__pick:hover,
+  .req__pick:focus-visible {
+    background: var(--ink-900);
+  }
+
+  .req__pick[disabled] {
+    opacity: 0.45;
+    cursor: default;
+  }
+
+  .req__picktext {
+    min-width: 0;
+  }
+
+  .req__title {
+    display: block;
+    font-weight: 700;
+    font-size: var(--text-lg);
+    text-transform: uppercase;
+    line-height: var(--leading-snug);
+  }
+
+  .req__artist {
+    display: block;
+    color: var(--text-muted);
+    margin-top: var(--space-1);
+  }
+
+  .req__add {
+    flex: none;
+    color: var(--text-on-accent);
+    background: var(--accent);
+    padding: var(--space-2) var(--space-4);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .req__pick[disabled] .req__add {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .req__status {
+    position: sticky;
+    bottom: var(--space-4);
+    margin-top: var(--space-8);
+    background: var(--accent);
+    color: var(--text-on-accent);
+    padding: var(--space-4);
+    text-align: center;
+  }
+
+  .req__status--error {
+    background: var(--error);
+    color: var(--paper);
+  }
+</style>
+
+<script>
+  const API = '/api/queue';
+  const queueEl = document.querySelector<HTMLElement>('[data-queue]');
+  const queueSection = document.querySelector<HTMLElement>('[data-queue-section]');
+  const closedEl = document.querySelector<HTMLElement>('[data-closed]');
+  const statusEl = document.querySelector<HTMLElement>('[data-status]');
+  const nameEl = document.querySelector<HTMLInputElement>('#req-name');
+
+  let statusTimer: number | undefined;
+  const say = (msg: string, isError = false) => {
+    if (!statusEl) return;
+    statusEl.textContent = msg;
+    statusEl.hidden = false;
+    statusEl.classList.toggle('req__status--error', isError);
+    window.clearTimeout(statusTimer);
+    statusTimer = window.setTimeout(() => (statusEl.hidden = true), 4000);
+  };
+
+  // A random per-device id. Throttling keys off this rather than the IP,
+  // because at a venue the whole room shares one address. It identifies a
+  // browser, not a person — no account, nothing personal in it.
+  const DEVICE = 'psm-device';
+  function deviceId(): string {
+    try {
+      let id = localStorage.getItem(DEVICE);
+      if (!id) {
+        id = crypto.randomUUID();
+        localStorage.setItem(DEVICE, id);
+      }
+      return id;
+    } catch {
+      return '';
+    }
+  }
+
+  // Remember what this device already asked for, so the buttons stay honest
+  // across a reload without needing accounts.
+  const MINE = 'psm-requested';
+  const mine = (): string[] => {
+    try {
+      return JSON.parse(localStorage.getItem(MINE) ?? '[]');
+    } catch {
+      return [];
+    }
+  };
+  const remember = (song: string) => {
+    try {
+      localStorage.setItem(MINE, JSON.stringify([...new Set([...mine(), song])]));
+    } catch {
+      /* private mode — not worth failing over */
+    }
+  };
+
+  function render(state: any) {
+    if (closedEl) closedEl.hidden = state.open !== false ? true : false;
+    document.querySelectorAll<HTMLButtonElement>('.req__pick').forEach((b) => {
+      b.disabled = state.open === false;
+    });
+
+    if (!queueEl || !queueSection) return;
+    const q = state.queue ?? [];
+    queueSection.hidden = q.length === 0;
+    queueEl.replaceChildren(
+      ...q.map((e: any, i: number) => {
+        const li = document.createElement('li');
+        li.className = 'req__entry' + (i === 0 ? ' req__entry--next' : '');
+
+        const main = document.createElement('div');
+        main.className = 'req__entrymain';
+
+        const song = document.createElement('div');
+        song.className = 'req__entrysong';
+        song.textContent = e.song;
+        main.appendChild(song);
+
+        const bits = [e.artist, e.name ? `for ${e.name}` : null].filter(Boolean);
+        if (bits.length) {
+          const meta = document.createElement('div');
+          meta.className = 'req__entrymeta';
+          meta.textContent = bits.join(' · ');
+          main.appendChild(meta);
+        }
+
+        li.appendChild(main);
+
+        if (e.votes > 1) {
+          const v = document.createElement('span');
+          v.className = 'req__votes';
+          v.textContent = `${e.votes} asks`;
+          li.appendChild(v);
+        }
+        return li;
+      }),
+    );
+  }
+
+  async function refresh() {
+    try {
+      const res = await fetch(API, { headers: { accept: 'application/json' } });
+      if (res.ok) render(await res.json());
+    } catch {
+      /* offline for a beat — the next poll will catch up */
+    }
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.req__pick').forEach((btn) => {
+    const song = btn.dataset.song!;
+    if (mine().includes(song)) {
+      const add = btn.querySelector('.req__add');
+      if (add) add.textContent = 'Requested';
+    }
+
+    btn.addEventListener('click', async () => {
+      btn.disabled = true;
+      try {
+        const res = await fetch(API, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            song,
+            artist: btn.dataset.artist ?? '',
+            name: nameEl?.value ?? '',
+            device: deviceId(),
+          }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          say(data.error ?? "That didn't go through.", true);
+          btn.disabled = false;
+          return;
+        }
+        remember(song);
+        const add = btn.querySelector('.req__add');
+        if (add) add.textContent = 'Requested';
+        say(`"${song}" is in the queue.`);
+        render(data);
+      } catch {
+        say("That didn't go through.", true);
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  });
+
+  refresh();
+  // Poll rather than hold a socket open: venue wifi drops, and a few seconds
+  // of staleness costs nothing here.
+  setInterval(refresh, 6000);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) refresh();
+  });
+</script>

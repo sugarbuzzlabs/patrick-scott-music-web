@@ -12,9 +12,11 @@ interface Props {
   page?: 'home' | 'booking' | 'epk';
   /** Extra JSON-LD to inject (already an object) */
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+  /** Keep the page out of search results and the sitemap */
+  noindex?: boolean;
 }
 
-const { title, description = site.description, page, jsonLd } = Astro.props;
+const { title, description = site.description, page, jsonLd, noindex = false } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
 /* OG/Twitter card uses the 1:1 hero crop, per the design system's asset notes. */
@@ -29,6 +31,7 @@ const fullTitle = title === site.name ? `${site.name} — ${site.tagline}` : `${
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
 
     <!-- Fonts are pulled by tokens/fonts.css; warm the connection early -->

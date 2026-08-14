@@ -1,0 +1,111 @@
+---
+/**
+ * Printable table tent — the thing that goes on tables at a gig.
+ * Two per sheet, sized for a fold. Print from the browser, portrait, no margins.
+ * Not linked from anywhere and kept out of search.
+ */
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import { qrSvg } from '../lib/tips';
+
+const setlistUrl = `${site.url}/setlist`;
+const qr = await qrSvg(setlistUrl, { dark: '#0C0B0A', light: '#F4F1EA' }, 'Song request QR code');
+const shortUrl = setlistUrl.replace(/^https?:\/\//, '');
+---
+
+<Base title="Table tent" description="Printable QR card for gigs." noindex>
+  <div class="tent__screen container section">
+    <p class="lede">
+      Print this page (portrait, no margins, background graphics on) for two table cards.
+      They point at <strong>{shortUrl}</strong>.
+    </p>
+  </div>
+
+  <div class="tent__sheet">
+    {
+      [0, 1].map(() => (
+        <div class="tent">
+          <div class="tent__eyebrow">Live requests</div>
+          <div class="tent__title">Pick the next song</div>
+          <div class="tent__qr" set:html={qr} />
+          <div class="tent__url">{shortUrl}</div>
+        </div>
+      ))
+    }
+  </div>
+</Base>
+
+<style>
+  .tent__sheet {
+    display: grid;
+    gap: var(--space-8);
+    padding: var(--space-8);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .tent {
+    /* Light card: this one is printed on paper, so it inverts the palette
+       deliberately — the design system allows a paper surface for print. */
+    background: var(--paper);
+    color: var(--ink-950);
+    border: 1px solid var(--ink-950);
+    padding: var(--space-10);
+    text-align: center;
+  }
+
+  .tent__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--label-size);
+    font-weight: 500;
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+    color: var(--accent-deep);
+  }
+
+  .tent__title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 120%;
+    text-transform: uppercase;
+    letter-spacing: var(--display-tracking);
+    line-height: var(--leading-tight);
+    font-size: 32px;
+    margin: var(--space-3) 0 var(--space-6);
+  }
+
+  .tent__qr :global(svg) {
+    width: 220px;
+    height: 220px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .tent__url {
+    font-family: var(--font-mono);
+    font-size: var(--label-size);
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+    margin-top: var(--space-5);
+  }
+
+  @media print {
+    .tent__screen {
+      display: none;
+    }
+    .tent__sheet {
+      padding: 0;
+      gap: 0;
+      max-width: none;
+    }
+    .tent {
+      border: 0;
+      padding: 12mm;
+      page-break-inside: avoid;
+      height: 148mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+</style>

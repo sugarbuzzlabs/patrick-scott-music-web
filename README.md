@@ -100,6 +100,58 @@ The form submits over `fetch` and shows the "Request sent" state in place, so th
 
 **If you ever leave Netlify,** this form stops working — it's the one piece of genuine platform lock-in. Swapping to Formspree means pointing the `fetch` at `https://formspree.io/f/<id>` and dropping the `data-netlify*` attributes.
 
+## Live song requests
+
+At a gig: people scan a QR code on the table, pick a song, and it lands in a queue you watch on your phone.
+
+| Page | Who it's for |
+| --- | --- |
+| `/setlist` | The audience. Song list, tap to request, live queue. |
+| `/stage` | You. The queue, with Played / move-to-top / clear. Key-gated, `noindex`. |
+| `/table-tent` | Printable QR cards, two per sheet. Print portrait, no margins, background graphics on. |
+
+None of the three are linked from the site or listed in the sitemap — `/setlist` is only meaningful during a show.
+
+### The songs
+
+`src/data/songs.json`, hand-editable like the others. The starter list is a guess — replace it with your real set.
+
+```json
+{ "title": "No Diggity", "artist": "Blackstreet", "tags": ["hip hop, gone folk"] }
+```
+
+### How it works
+
+`netlify/functions/queue.mjs` stores queue state in a Netlify Blob. The audience page and stage view both poll it every few seconds — polling rather than websockets, because venue wifi drops and a few seconds of staleness costs nothing.
+
+| Route | Auth | Does |
+| --- | --- | --- |
+| `GET /api/queue` | public | queue + recently played |
+| `POST /api/queue` | public | add a request |
+| `POST /api/queue/played` | stage key | mark played |
+| `POST /api/queue/bump` | stage key | move to top |
+| `POST /api/queue/clear` | stage key | empty queue, played list and throttles |
+| `POST /api/queue/open` · `/close` | stage key | take requests, or stop |
+
+Behavior worth knowing:
+
+- **Duplicate requests become votes.** Ask for a song already queued and it shows "3 asks" rather than appearing three times.
+- **Throttling is per device, not per IP** — at a venue the whole room shares one NAT address, so an IP limit would lock everyone out. 5 requests per device per 10 minutes, with a high per-IP ceiling as an abuse backstop.
+- **The stage view blips and vibrates** when a new request arrives. Browsers block audio until you interact with the page, so tap once after unlocking.
+- **Clear between gigs** — it resets the queue, the played list and the throttles.
+
+### The stage key
+
+Set as the `STAGE_KEY` environment variable in Netlify (Project configuration → Environment variables). The stage page asks for it once and remembers it in that browser.
+
+To rotate it:
+
+```bash
+netlify env:set STAGE_KEY "$(node -e "console.log(require('crypto').randomBytes(6).toString('base64url'))")"
+```
+
+Then redeploy — env changes only take effect on a new deploy. It gates queue *control*, not viewing; the queue itself is public by design, since the audience sees it too.
+
 ### Email signup → your mailing-list provider
 
 **TODO:** the signup form is stubbed. Set `newsletterAction` in `src/data/site.json` to your provider's POST endpoint and `newsletterEmailField` to the field name it expects:

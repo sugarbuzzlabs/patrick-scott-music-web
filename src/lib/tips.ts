@@ -25,12 +25,16 @@ export function paypalUrl(handle: string | null | undefined): string | null {
  * Toned white on warm near-black: the tokenized palette, and still well past
  * the contrast ratio scanners need.
  */
-export async function qrSvg(url: string): Promise<string> {
+export async function qrSvg(
+  url: string,
+  color: { dark: string; light: string } = { dark: '#F4F1EA', light: '#0C0B0A' },
+  label = 'Venmo tip QR code',
+): Promise<string> {
   const svg = await QRCode.toString(url, {
     type: 'svg',
     errorCorrectionLevel: 'M',
     margin: 1,
-    color: { dark: '#F4F1EA', light: '#0C0B0A' },
+    color,
   });
-  return svg.replace('<svg', '<svg role="img" aria-label="Venmo tip QR code"');
+  return svg.replace('<svg', `<svg role="img" aria-label="${label}"`);
 }

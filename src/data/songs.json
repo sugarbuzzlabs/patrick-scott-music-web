@@ -1,0 +1,17 @@
+{
+  "_comment": "The request list. Hand-edit freely — this is what the audience sees when they scan the QR code. 'tags' are optional and shown as small labels. Delete the starter songs below and put in your real set.",
+  "songs": [
+    { "title": "No Diggity", "artist": "Blackstreet", "tags": ["hip hop, gone folk"] },
+    { "title": "Ms. Jackson", "artist": "OutKast", "tags": ["hip hop, gone folk"] },
+    { "title": "Jolene", "artist": "Dolly Parton", "tags": ["country"] },
+    { "title": "Tennessee Whiskey", "artist": "Chris Stapleton", "tags": ["country"] },
+    { "title": "Redbone", "artist": "Childish Gambino", "tags": ["R&B"] },
+    { "title": "Killing Me Softly", "artist": "Fugees", "tags": ["R&B"] },
+    { "title": "Dreams", "artist": "Fleetwood Mac", "tags": ["chick rock"] },
+    { "title": "Landslide", "artist": "Fleetwood Mac", "tags": ["chick rock"] },
+    { "title": "The Chain", "artist": "Fleetwood Mac", "tags": ["chick rock"] },
+    { "title": "Wagon Wheel", "artist": "Old Crow Medicine Show", "tags": ["country"] },
+    { "title": "Ho Hey", "artist": "The Lumineers", "tags": ["folk"] },
+    { "title": "Use Somebody", "artist": "Kings of Leon", "tags": ["pop"] }
+  ]
+}

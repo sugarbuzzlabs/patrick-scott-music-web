@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /stage
 
 Sitemap: https://patrickscottmusic.com/sitemap-index.xml

@@ -1,0 +1,420 @@
+---
+/**
+ * Private stage view — the page Patrick keeps open on his phone during a set.
+ * Gated by STAGE_KEY (a Netlify env var), held in localStorage after first entry.
+ * noindex: this should never turn up in search results.
+ */
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Stage" description="Live request queue." noindex>
+  <div class="container section stage">
+    <!-- Key gate -->
+    <div class="stage__gate" data-gate>
+      <h1 class="stage__title">Stage</h1>
+      <p class="lede">Enter the stage key.</p>
+      <form class="stage__gateform" data-gateform>
+        <input
+          class="stage__input"
+          type="password"
+          data-keyinput
+          placeholder="Stage key"
+          autocomplete="current-password"
+          aria-label="Stage key"
+        />
+        <button class="stage__btn stage__btn--solid" type="submit">Unlock</button>
+      </form>
+      <p class="stage__err mono" data-gateerr hidden>Wrong key.</p>
+    </div>
+
+    <!-- Queue -->
+    <div class="stage__main" data-main hidden>
+      <div class="stage__head">
+        <div>
+          <div class="stage__eyebrow mono">Up next</div>
+          <h1 class="stage__title" data-count>0 requests</h1>
+        </div>
+        <div class="stage__headbtns">
+          <button class="stage__btn" type="button" data-toggle>Close requests</button>
+          <button class="stage__btn" type="button" data-clear>Clear</button>
+        </div>
+      </div>
+
+      <ol class="stage__list" data-queue></ol>
+      <p class="stage__empty mono" data-empty hidden>Nothing requested yet.</p>
+
+      <div class="stage__played" data-playedwrap hidden>
+        <div class="stage__eyebrow mono">Played</div>
+        <ul class="stage__playedlist" data-played></ul>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .stage {
+    max-width: 680px;
+  }
+
+  .stage__title {
+    font-size: clamp(32px, 8vw, var(--text-3xl));
+  }
+
+  .stage__eyebrow {
+    color: var(--text-accent);
+    margin-bottom: var(--space-2);
+  }
+
+  .stage__gateform {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .stage__input {
+    flex: 1 1 200px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    padding: var(--space-3) 14px;
+    min-height: 48px;
+    outline: none;
+  }
+
+  .stage__input:focus {
+    border-color: var(--focus-ring);
+  }
+
+  .stage__btn {
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 14px;
+    padding: var(--space-3) var(--space-5);
+    min-height: 48px;
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-none);
+    cursor: pointer;
+    transition: all var(--dur) var(--ease);
+  }
+
+  .stage__btn:hover {
+    border-color: var(--border-strong);
+    background: var(--ink-800);
+  }
+
+  .stage__btn--solid {
+    background: var(--accent);
+    color: var(--text-on-accent);
+    border-color: transparent;
+  }
+
+  .stage__err {
+    color: var(--error);
+    margin-top: var(--space-4);
+  }
+
+  .stage__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-8);
+  }
+
+  .stage__headbtns {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .stage__list,
+  .stage__playedlist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  :global(.stage__entry) {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  :global(.stage__entry--next) {
+    border-left: 3px solid var(--accent);
+    padding-left: var(--space-4);
+  }
+
+  :global(.stage__entrymain) {
+    flex: 1;
+    min-width: 0;
+  }
+
+  :global(.stage__song) {
+    font-weight: 700;
+    font-size: var(--text-lg);
+    text-transform: uppercase;
+    line-height: var(--leading-snug);
+  }
+
+  :global(.stage__meta) {
+    font-family: var(--font-mono);
+    font-size: var(--label-size);
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: var(--space-1);
+  }
+
+  :global(.stage__entrybtns) {
+    display: flex;
+    gap: var(--space-2);
+    flex: none;
+  }
+
+  :global(.stage__mini) {
+    font-family: var(--font-mono);
+    font-size: var(--label-size);
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-strong);
+    padding: 0 var(--space-3);
+    min-height: 44px;
+    min-width: 44px;
+    cursor: pointer;
+    border-radius: var(--radius-none);
+  }
+
+  :global(.stage__mini--done) {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--text-on-accent);
+  }
+
+  .stage__empty {
+    color: var(--text-muted);
+    padding: var(--space-6) 0;
+  }
+
+  .stage__played {
+    margin-top: var(--space-12);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  :global(.stage__playeditem) {
+    font-family: var(--font-mono);
+    font-size: var(--label-size);
+    letter-spacing: var(--label-tracking);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: var(--space-2) 0;
+  }
+</style>
+
+<script>
+  const API = '/api/queue';
+  const KEYSTORE = 'psm-stage-key';
+
+  const gate = document.querySelector<HTMLElement>('[data-gate]');
+  const gateForm = document.querySelector<HTMLFormElement>('[data-gateform]');
+  const gateErr = document.querySelector<HTMLElement>('[data-gateerr]');
+  const keyInput = document.querySelector<HTMLInputElement>('[data-keyinput]');
+  const main = document.querySelector<HTMLElement>('[data-main]');
+  const listEl = document.querySelector<HTMLElement>('[data-queue]');
+  const emptyEl = document.querySelector<HTMLElement>('[data-empty]');
+  const countEl = document.querySelector<HTMLElement>('[data-count]');
+  const toggleBtn = document.querySelector<HTMLButtonElement>('[data-toggle]');
+  const clearBtn = document.querySelector<HTMLButtonElement>('[data-clear]');
+  const playedWrap = document.querySelector<HTMLElement>('[data-playedwrap]');
+  const playedEl = document.querySelector<HTMLElement>('[data-played]');
+
+  let stageKey = localStorage.getItem(KEYSTORE) ?? '';
+  let known = new Set<string>();
+  let primed = false;
+
+  const post = (action: string, body: Record<string, unknown> = {}) =>
+    fetch(`${API}/${action}`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-stage-key': stageKey },
+      body: JSON.stringify(body),
+    });
+
+  /** Short blip when a new request lands, so he doesn't have to stare at it. */
+  function blip() {
+    try {
+      const Ctx = window.AudioContext ?? (window as any).webkitAudioContext;
+      if (!Ctx) return;
+      const ctx = new Ctx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = 880;
+      gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.2, ctx.currentTime + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.25);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.26);
+    } catch {
+      /* audio blocked until first interaction — the visual update still lands */
+    }
+    if (navigator.vibrate) navigator.vibrate(120);
+  }
+
+  function render(state: any) {
+    const q = state.queue ?? [];
+
+    if (countEl) countEl.textContent = `${q.length} request${q.length === 1 ? '' : 's'}`;
+    if (emptyEl) emptyEl.hidden = q.length > 0;
+    if (toggleBtn) toggleBtn.textContent = state.open === false ? 'Open requests' : 'Close requests';
+
+    // Notify only for genuinely new entries, and never on the first paint.
+    const ids = new Set<string>(q.map((e: any) => e.id));
+    if (primed && [...ids].some((id) => !known.has(id))) blip();
+    known = ids;
+    primed = true;
+
+    if (listEl) {
+      listEl.replaceChildren(
+        ...q.map((e: any, i: number) => {
+          const li = document.createElement('li');
+          li.className = 'stage__entry' + (i === 0 ? ' stage__entry--next' : '');
+
+          const m = document.createElement('div');
+          m.className = 'stage__entrymain';
+          const s = document.createElement('div');
+          s.className = 'stage__song';
+          s.textContent = e.song;
+          m.appendChild(s);
+
+          const bits = [
+            e.artist,
+            e.name ? `for ${e.name}` : null,
+            e.votes > 1 ? `${e.votes} asks` : null,
+          ].filter(Boolean);
+          if (bits.length) {
+            const meta = document.createElement('div');
+            meta.className = 'stage__meta';
+            meta.textContent = bits.join(' · ');
+            m.appendChild(meta);
+          }
+          li.appendChild(m);
+
+          const btns = document.createElement('div');
+          btns.className = 'stage__entrybtns';
+
+          if (i > 0) {
+            const up = document.createElement('button');
+            up.className = 'stage__mini';
+            up.type = 'button';
+            up.textContent = '↑';
+            up.setAttribute('aria-label', `Move ${e.song} to the top`);
+            up.addEventListener('click', async () => {
+              await post('bump', { id: e.id });
+              refresh();
+            });
+            btns.appendChild(up);
+          }
+
+          const done = document.createElement('button');
+          done.className = 'stage__mini stage__mini--done';
+          done.type = 'button';
+          done.textContent = 'Played';
+          done.setAttribute('aria-label', `Mark ${e.song} played`);
+          done.addEventListener('click', async () => {
+            await post('played', { id: e.id });
+            refresh();
+          });
+          btns.appendChild(done);
+
+          li.appendChild(btns);
+          return li;
+        }),
+      );
+    }
+
+    const played = state.played ?? [];
+    if (playedWrap) playedWrap.hidden = played.length === 0;
+    if (playedEl) {
+      playedEl.replaceChildren(
+        ...[...played].reverse().map((e: any) => {
+          const li = document.createElement('li');
+          li.className = 'stage__playeditem';
+          li.textContent = e.song;
+          return li;
+        }),
+      );
+    }
+  }
+
+  async function refresh() {
+    try {
+      const res = await fetch(API, { headers: { accept: 'application/json' } });
+      if (res.ok) render(await res.json());
+    } catch {
+      /* next poll */
+    }
+  }
+
+  async function unlock(key: string) {
+    // 'bump' with a bogus id: 401 means the key is wrong, 404 means it worked.
+    const res = await fetch(`${API}/bump`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-stage-key': key },
+      body: JSON.stringify({ id: '__probe__' }),
+    });
+    return res.status !== 401;
+  }
+
+  async function enter() {
+    if (gate) gate.hidden = true;
+    if (main) main.hidden = false;
+    await refresh();
+    setInterval(refresh, 5000);
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) refresh();
+    });
+  }
+
+  gateForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const val = keyInput?.value ?? '';
+    if (!val) return;
+    if (await unlock(val)) {
+      stageKey = val;
+      localStorage.setItem(KEYSTORE, val);
+      if (gateErr) gateErr.hidden = true;
+      enter();
+    } else if (gateErr) {
+      gateErr.hidden = false;
+    }
+  });
+
+  toggleBtn?.addEventListener('click', async () => {
+    const closing = toggleBtn.textContent?.includes('Close');
+    await post(closing ? 'close' : 'open');
+    refresh();
+  });
+
+  clearBtn?.addEventListener('click', async () => {
+    if (!window.confirm('Clear the whole queue and played list?')) return;
+    await post('clear');
+    refresh();
+  });
+
+  if (stageKey && (await unlock(stageKey))) enter();
+</script>
