@@ -3,14 +3,14 @@
   "songs": [
     {
       "title": "3AM",
-      "artist": "Matchbox 20 ",
+      "artist": "Matchbox 20",
       "tags": [
         "90s"
       ]
     },
     {
       "title": "Absolutely (Story of a Girl)",
-      "artist": "Nine Days "
+      "artist": "Nine Days"
     },
     {
       "title": "Ain’t No Sunshine",
@@ -66,7 +66,7 @@
     },
     {
       "title": "Cable Car",
-      "artist": "The Fray "
+      "artist": "The Fray"
     },
     {
       "title": "Callie",
@@ -77,7 +77,7 @@
     },
     {
       "title": "Champagne Supernova",
-      "artist": "Oasis ",
+      "artist": "Oasis",
       "tags": [
         "90s"
       ]
@@ -161,7 +161,7 @@
       "artist": "Better Than Ezra"
     },
     {
-      "title": "Dont Stop Believing",
+      "title": "Don't Stop Believin'",
       "artist": "Journey"
     },
     {
@@ -178,7 +178,7 @@
     },
     {
       "title": "Fight For Your Right",
-      "artist": "Beastie Boys "
+      "artist": "Beastie Boys"
     },
     {
       "title": "Flake",
@@ -187,6 +187,10 @@
     {
       "title": "Free Fallin’",
       "artist": "Tom Petty"
+    },
+    {
+      "title": "Friends in Low Places",
+      "artist": "Garth Brooks"
     },
     {
       "title": "Good Riddance",
@@ -217,7 +221,7 @@
     },
     {
       "title": "Hey There Delilah",
-      "artist": "Plain White T's "
+      "artist": "Plain White T's"
     },
     {
       "title": "Hey Ya!",
@@ -248,7 +252,7 @@
     },
     {
       "title": "I Will Survive",
-      "artist": "Cake "
+      "artist": "Cake"
     },
     {
       "title": "I’ll Be There For You",
@@ -340,8 +344,12 @@
       ]
     },
     {
+      "title": "Layla",
+      "artist": "Eric Clapton"
+    },
+    {
       "title": "Learn To Fly",
-      "artist": "Foo Fighters ",
+      "artist": "Foo Fighters",
       "tags": [
         "90s"
       ]
@@ -375,7 +383,7 @@
     },
     {
       "title": "Look What You've Done",
-      "artist": "Jet "
+      "artist": "Jet"
     },
     {
       "title": "Mad World",
@@ -426,8 +434,8 @@
       "artist": "John Mayer"
     },
     {
-      "title": "No Such THing",
-      "artist": "John Mayer "
+      "title": "No Such Thing",
+      "artist": "John Mayer"
     },
     {
       "title": "No Woman No Cry",
@@ -447,7 +455,7 @@
     },
     {
       "title": "Only Hope",
-      "artist": "Switchfoot "
+      "artist": "Switchfoot"
     },
     {
       "title": "Out Of My Head",
@@ -541,7 +549,7 @@
     },
     {
       "title": "Since You've Been Gone",
-      "artist": "Kelly Clarkson "
+      "artist": "Kelly Clarkson"
     },
     {
       "title": "Sitting on the Dock of The Bay",
@@ -622,6 +630,10 @@
       "artist": "Jim Croce"
     },
     {
+      "title": "Tiny Dancer",
+      "artist": "Elton John"
+    },
+    {
       "title": "To Not Worship You",
       "artist": "MercyMe"
     },
@@ -692,7 +704,7 @@
     },
     {
       "title": "Why Georgia",
-      "artist": "John Mayer "
+      "artist": "John Mayer"
     },
     {
       "title": "Willie Nelson",
