@@ -79,17 +79,20 @@ Placeholder values start with `TODO_`. While they're unset the site still works 
 
 ## Wiring the forms
 
-### Booking form → Formspree
+### Booking form → Netlify Forms
 
-1. Create a form at [formspree.io](https://formspree.io) and copy the ID out of the endpoint `https://formspree.io/f/XXXXXXXX`.
-2. Put that ID in `formspreeId` in `src/data/site.json`.
-3. Rebuild.
+**No configuration in this repo.** The form in `src/pages/booking.astro` carries `name="booking"`, `data-netlify="true"`, and a hidden `form-name` input. Netlify's build bot detects it in the deployed HTML and starts capturing submissions automatically.
 
-The form submits over `fetch` and shows the "Request sent" state in place — no redirect to a third-party thank-you page. If the request fails, the visitor gets your email address instead. Until the ID is set, the submit button composes a `mailto:` with the fields pre-filled, so the form is useful from day one.
+- **Reading submissions:** Netlify → your project → **Forms → booking**. Exportable as CSV.
+- **Getting notified:** Forms → booking → Settings → **Form notifications** → add an email notification pointing at `booking@patrickscottmusic.com`. Do this, or submissions pile up unread in the dashboard.
+- **Spam:** a `bot-field` honeypot is wired via `data-netlify-honeypot`. Netlify also offers reCAPTCHA if spam ever becomes a problem.
+- **Free tier:** 100 submissions/month.
 
-There's a `_gotcha` honeypot field for spam.
+The form submits over `fetch` and shows the "Request sent" state in place, so there's no redirect to a generic thank-you page. If the POST fails, the visitor is shown the booking email address instead.
 
-**Using Netlify Forms instead?** Add `data-netlify="true"` and a hidden `form-name` input to the `<form>` in `src/pages/booking.astro`, and remove the `fetch` handler in that file's `<script>`. Netlify only — it won't work on Vercel.
+**Local dev:** Netlify Forms only exists on a Netlify deploy, so on `localhost` the submit handler falls back to composing a `mailto:`. Test the real path on a deploy preview, not `npm run dev`.
+
+**If you ever leave Netlify,** this form stops working — it's the one piece of genuine platform lock-in. Swapping to Formspree means pointing the `fetch` at `https://formspree.io/f/<id>` and dropping the `data-netlify*` attributes.
 
 ### Email signup → your mailing-list provider
 
@@ -133,9 +136,58 @@ npx vercel --prod
 
 Or import the repo at vercel.com.
 
-### Custom domain
+### Custom domain — current setup
 
-Point `patrickscottmusic.com` at the host, then confirm `site` in `astro.config.mjs` and `url` in `src/data/site.json` match — canonical URLs, OG tags, and the sitemap are all built from that value.
+Live at **https://patrickscottmusic.com**, hosted on Netlify (project `patrick-scott-music`, Sugarbuzz Labs team).
+
+- **Registrar:** Namecheap
+- **DNS:** Netlify DNS — nameservers are `dns1`–`dns4.p02.nsone.net`. Records are managed in Netlify, *not* in Namecheap's Advanced DNS panel. Editing records at Namecheap will do nothing.
+- **Apex is primary**, `www` 301-redirects to it. `http` → `https`. HSTS enabled.
+- **TLS:** Let's Encrypt, auto-renewing, covers apex + `*.patrickscottmusic.com`.
+
+If you ever change the domain, update `site` in `astro.config.mjs` and `url` in `src/data/site.json` to match — canonical URLs, OG tags, and the sitemap are all built from that value.
+
+#### DNS records
+
+| Type | Host | Value | Purpose |
+| --- | --- | --- | --- |
+| NETLIFY | `@` | `patrick-scott-music.netlify.app` | site |
+| NETLIFY | `www` | `patrick-scott-music.netlify.app` | site |
+| MX (10) | `@` | `mx.zoho.com` | mail |
+| MX (20) | `@` | `mx2.zoho.com` | mail |
+| MX (50) | `@` | `mx3.zoho.com` | mail |
+| TXT | `@` | `v=spf1 include:zohomail.com ~all` | SPF |
+| TXT | `@` | `zoho-verification=zb62318635.zmverify.zoho.com` | Zoho domain verification |
+| TXT | `zmail._domainkey` | `v=DKIM1; k=rsa; p=…` | DKIM |
+
+Records can be edited in the Netlify UI (Domains → patrickscottmusic.com) or from the CLI:
+
+```bash
+netlify api getDnsRecords --data '{"zone_id":"6a7e82eebf140581ae71c84d"}'
+```
+
+Note the CLI needs the create payload wrapped in `body`:
+
+```bash
+netlify api createDnsRecord --data '{"zone_id":"<zone>","body":{"type":"TXT","hostname":"patrickscottmusic.com","value":"...","ttl":3600}}'
+```
+
+### Email
+
+`booking@patrickscottmusic.com` is published in the footer, the press kit, and used as the booking form's mailto fallback — so it has to receive mail.
+
+Mail runs on **Zoho Mail**, under the existing Sugarbuzz Labs Zoho organization — `patrickscottmusic.com` is an additional domain in that org, not a separate account. The org's primary domain is `ironandpsalm.com`; leave it that way. Changing the primary domain rewrites existing identities in the org.
+
+DNS side is complete: MX, SPF, domain verification, and DKIM are all in the zone above and confirmed propagating.
+
+Remaining, in the Zoho admin console:
+
+1. Add `booking@patrickscottmusic.com` as an **email alias** on the existing Sugarbuzz Labs user (Users → user → Mail Alias). An alias delivers into the inbox you already read, allows send-as, and uses no extra user license.
+2. Send a test message from an outside address (Gmail, phone) and confirm it arrives.
+
+The SPF record uses `~all` (soft fail) to be forgiving during setup. Tighten it to `-all` once mail is confirmed working and nothing else sends as this domain.
+
+Consider adding a DMARC record (`_dmarc` TXT, starting at `p=none`) once SPF and DKIM are both passing.
 
 ---
 

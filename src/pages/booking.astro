@@ -11,14 +11,19 @@ import site from '../data/site.json';
 import { photo } from '../lib/images';
 
 /**
- * TODO: Formspree.
- * Set "formspreeId" in src/data/site.json (formspree.io → New form → the ID in
- * https://formspree.io/f/XXXXXXXX). Until then the form composes a mailto: to
- * the booking address instead of posting, so it still works on day one.
+ * Booking form → Netlify Forms.
+ *
+ * Netlify's build bot detects the form from the deployed HTML: it needs a
+ * `name`, the `data-netlify` attribute, and a hidden `form-name` input whose
+ * value matches. Submissions then appear under Forms in the Netlify UI.
+ *
+ * Notifications are configured in Netlify (Forms → booking → Settings →
+ * Form notifications), not in this repo — point them at the booking address.
+ *
+ * Locally there's no Netlify to POST to, so `npm run dev` falls back to a
+ * mailto: compose instead of a failed request.
  */
-const formspreeId = site.formspreeId;
-const wired = Boolean(formspreeId) && !formspreeId.startsWith('TODO_');
-const endpoint = wired ? `https://formspree.io/f/${formspreeId}` : undefined;
+const FORM_NAME = 'booking';
 
 const stage = photo('dark-stage-guitar.jpg');
 ---
@@ -53,11 +58,13 @@ const stage = photo('dark-stage-guitar.jpg');
       <form
         class="booking__form"
         id="booking-form"
-        action={endpoint}
+        name={FORM_NAME}
         method="post"
-        data-wired={wired ? 'true' : 'false'}
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
         data-mailto={site.bookingEmail}
       >
+        <input type="hidden" name="form-name" value={FORM_NAME} />
         <div class="booking__pair">
           <Input label="Name" name="name" placeholder="Your name" required autocomplete="name" />
           <Input
@@ -89,9 +96,10 @@ const stage = photo('dark-stage-guitar.jpg');
           required
         />
 
-        <!-- Formspree conveniences: subject line + honeypot -->
-        <input type="hidden" name="_subject" value="Booking request — patrickscottmusic.com" />
-        <input class="visually-hidden" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <!-- Netlify honeypot: bots fill it, humans never see it -->
+        <p class="visually-hidden" aria-hidden="true">
+          <label>Leave this field empty<input type="text" name="bot-field" tabindex="-1" autocomplete="off" /></label>
+        </p>
 
         <Button variant="solid" size="lg" type="submit" full>Send booking request</Button>
 
@@ -99,14 +107,6 @@ const stage = photo('dark-stage-guitar.jpg');
           That didn't send. Email <a href={`mailto:${site.bookingEmail}`}>{site.bookingEmail}</a> instead.
         </p>
 
-        {
-          !wired && (
-            <p class="booking__todo mono">
-              TODO: set "formspreeId" in src/data/site.json. Until then this button opens your mail
-              client with the request pre-filled.
-            </p>
-          )
-        }
       </form>
 
       <div class="booking__sent" data-form-sent hidden>
@@ -212,13 +212,17 @@ const stage = photo('dark-stage-guitar.jpg');
       if (sent) sent.hidden = false;
     };
 
+    // Netlify Forms only exists on a Netlify deploy. `npm run dev` and
+    // `npm run preview` serve from localhost, where the POST would 404.
+    const onNetlify = !['localhost', '127.0.0.1'].includes(window.location.hostname);
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!form.reportValidity()) return;
       const data = new FormData(form);
 
-      // No Formspree ID yet: hand the request to the user's mail client.
-      if (form.dataset.wired !== 'true') {
+      if (!onNetlify) {
+        // Local dev: hand the request to the user's mail client instead.
         const to = form.dataset.mailto!;
         const body = [
           `Name: ${data.get('name') ?? ''}`,
@@ -238,10 +242,11 @@ const stage = photo('dark-stage-guitar.jpg');
       if (submit) submit.disabled = true;
 
       try {
-        const res = await fetch(form.action, {
+        // Netlify accepts AJAX submissions as urlencoded POSTs to the page path.
+        const res = await fetch(window.location.pathname, {
           method: 'POST',
-          body: data,
-          headers: { Accept: 'application/json' },
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
         });
         if (!res.ok) throw new Error(String(res.status));
         showSent();

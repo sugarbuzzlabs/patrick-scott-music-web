@@ -6,11 +6,10 @@
   "description": "Atlanta-based live performer. Genre-bending covers built live with a loop pedal. Bars, breweries, festivals, weddings, private events.",
   "bookingEmail": "booking@patrickscottmusic.com",
 
-  "_comment_formspree": "TODO: replace with your Formspree form ID (formspree.io -> New Form -> copy the ID from the endpoint https://formspree.io/f/XXXXXXXX). Until then the booking form falls back to a mailto: link.",
-  "formspreeId": "TODO_FORMSPREE_ID",
+  "_comment_booking_form": "The booking form uses Netlify Forms - no config needed here. Submissions appear in Netlify under Forms > booking. Set up email notifications there (Forms > booking > Settings > Form notifications).",
 
-  "_comment_venmo": "TODO: replace with your Venmo handle, no @ sign. The tip QR code is generated from this at build time.",
-  "venmoHandle": "TODO_VENMO_HANDLE",
+  "_comment_venmo": "Venmo handle, no @ sign. The tip QR code is generated from this at build time.",
+  "venmoHandle": "Patrick-Hoydar",
 
   "_comment_paypal": "Optional. TODO: replace with your PayPal.me handle, or set to null to hide the PayPal button.",
   "paypalHandle": "TODO_PAYPAL_HANDLE",
