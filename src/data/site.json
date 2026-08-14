@@ -11,10 +11,8 @@
   "_comment_venmo": "Venmo handle, no @ sign. The tip QR code is generated from this at build time.",
   "venmoHandle": "Patrick-Hoydar",
 
-  "_comment_paypal": "Optional. TODO: replace with your PayPal.me handle, or set to null to hide the PayPal button.",
-  "paypalHandle": "TODO_PAYPAL_HANDLE",
+  "_comment_paypal": "Optional PayPal.me handle, no @ sign. Set to null to hide the PayPal button in the tip dialog.",
+  "paypalHandle": "phoydar",
 
-  "_comment_newsletter": "TODO: replace action with your mailing-list provider's form endpoint (Mailchimp / ConvertKit / Buttondown). See README > Email signup. Leave as null to keep the stub behavior.",
-  "newsletterAction": null,
-  "newsletterEmailField": "email"
+  "_comment_newsletter": "The email signup uses Netlify Forms - no config needed here. Addresses collect under Forms > newsletter in Netlify; export as CSV to mail the list."
 }

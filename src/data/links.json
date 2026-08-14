@@ -1,9 +1,9 @@
 {
-  "_comment": "Streaming + social links shown in the Listen section and footer. TODO: replace the placeholder URLs with your real profiles.",
+  "_comment": "Streaming + social links shown in the Listen section and the footer. Order here is the order on the page.",
   "platforms": [
-    { "name": "Spotify", "href": "https://open.spotify.com/" },
-    { "name": "Apple Music", "href": "https://music.apple.com/" },
-    { "name": "YouTube", "href": "https://youtube.com/" },
-    { "name": "Instagram", "href": "https://instagram.com/" }
+    { "name": "Spotify", "href": "https://open.spotify.com/artist/34N94N7sTC9jHD3Brfz1jv" },
+    { "name": "SoundCloud", "href": "https://soundcloud.com/phoydar" },
+    { "name": "YouTube", "href": "https://www.youtube.com/@PatrickScottMusic" },
+    { "name": "Facebook", "href": "https://www.facebook.com/patrickscottmusic" }
   ]
 }

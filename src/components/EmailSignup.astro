@@ -1,20 +1,18 @@
 ---
 import Button from './Button.astro';
 import Input from './Input.astro';
-import site from '../data/site.json';
 
 /**
- * TODO: mailing-list provider.
- * Set "newsletterAction" in src/data/site.json to your provider's form POST
- * endpoint and "newsletterEmailField" to the field name it expects:
- *   Mailchimp    action: https://<user>.us1.list-manage.com/subscribe/post?u=...&id=...   field: EMAIL
- *   ConvertKit   action: https://app.convertkit.com/forms/<form-id>/subscriptions        field: email_address
- *   Buttondown   action: https://buttondown.email/api/emails/embed-subscribe/<user>      field: email
- * Until it's set, the form is inert and shows the notice below instead of posting.
+ * Email signup → Netlify Forms (same mechanism as the booking form).
+ *
+ * Addresses are collected under Forms → newsletter in the Netlify UI and
+ * exported as CSV when you want to mail the list. No mailing-list provider
+ * is involved, which means no automated unsubscribe handling — if the list
+ * outgrows BCC, move to a real provider (Buttondown, ConvertKit) and point
+ * this form's POST at their endpoint instead.
  */
-const action = site.newsletterAction;
-const field = site.newsletterEmailField || 'email';
-const wired = Boolean(action);
+const FORM_NAME = 'newsletter';
+const field = 'email';
 ---
 
 <section class="signup rule-top" aria-labelledby="signup-title">
@@ -23,11 +21,15 @@ const wired = Boolean(action);
 
     <form
       class="signup__form"
-      action={action ?? undefined}
+      name={FORM_NAME}
       method="post"
-      target={wired ? '_blank' : undefined}
-      data-wired={wired ? 'true' : 'false'}
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
     >
+      <input type="hidden" name="form-name" value={FORM_NAME} />
+      <p class="visually-hidden" aria-hidden="true">
+        <label>Leave this field empty<input type="text" name="bot-field" tabindex="-1" autocomplete="off" /></label>
+      </p>
       <Input
         class="signup__field"
         type="email"
@@ -41,14 +43,7 @@ const wired = Boolean(action);
     </form>
 
     <p class="signup__status mono" data-signup-status hidden>You're on the list.</p>
-
-    {
-      !wired && (
-        <p class="signup__todo mono">
-          TODO: connect your mailing-list provider — set "newsletterAction" in src/data/site.json.
-        </p>
-      )
-    }
+    <p class="signup__error mono" data-signup-error hidden role="alert">That didn't go through. Try again.</p>
   </div>
 </section>
 
@@ -98,24 +93,51 @@ const wired = Boolean(action);
     margin-top: var(--space-6);
   }
 
-  .signup__todo {
-    color: var(--text-accent);
+  .signup__error {
+    color: var(--error);
     margin-top: var(--space-5);
     line-height: 1.7;
   }
 </style>
 
 <script>
-  // Until a provider endpoint is configured the form must not navigate anywhere;
-  // acknowledge the submit in place instead, matching the mockup's subbed state.
+  // Posts to Netlify Forms and swaps in the "You're on the list." state without
+  // navigating. Netlify Forms only exists on a deploy, so localhost short-circuits
+  // to the confirmation rather than a failed request.
   document.querySelectorAll<HTMLFormElement>('.signup__form').forEach((form) => {
-    if (form.dataset.wired === 'true') return;
-    const status = form.parentElement?.querySelector<HTMLElement>('[data-signup-status]');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!form.reportValidity()) return;
+    const wrap = form.parentElement;
+    const status = wrap?.querySelector<HTMLElement>('[data-signup-status]');
+    const error = wrap?.querySelector<HTMLElement>('[data-signup-error]');
+    const onNetlify = !['localhost', '127.0.0.1'].includes(window.location.hostname);
+
+    const confirm = () => {
       form.hidden = true;
       if (status) status.hidden = false;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      if (error) error.hidden = true;
+
+      if (!onNetlify) {
+        confirm();
+        return;
+      }
+
+      try {
+        const res = await fetch(window.location.pathname, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(
+            new FormData(form) as unknown as Record<string, string>,
+          ).toString(),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        confirm();
+      } catch {
+        if (error) error.hidden = false;
+      }
     });
   });
 </script>
