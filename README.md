@@ -61,7 +61,13 @@ Shown in the Listen section and the footer. Replace the placeholder URLs with yo
 
 Cards on the home page. `image` is a filename from `src/assets/photos/`. Drop a new photo in that folder and reference it by name — Astro optimizes it and generates responsive sizes at build.
 
-Merch `href`s are placeholders — point them at Stripe Payment Links or your store.
+**Outstanding placeholders — these are live on the public site:**
+
+- Every `href` in `videos.json` is `"#"`. Point them at the real YouTube videos.
+- Every `href` in `merch.json` is `"#"`, and the items themselves are invented (tee, cap, poster) with placeholder prices and stand-in photos. Point them at Stripe Payment Links or your store, or delete the section from `src/pages/index.astro` if you aren't selling merch yet.
+- **Download EPK** on the press-kit page links to the press-kit page itself. Point it at a hosted PDF or zip of the photos and bio.
+
+Nothing on the site announces these as unfinished — a link that goes nowhere just looks broken, so either fill them in or remove the sections.
 
 ### `src/data/site.json` — the config with the TODOs
 
