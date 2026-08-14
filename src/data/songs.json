@@ -1,72 +1,118 @@
 {
-  "_comment": "Request list for /setlist, generated from the OnSong backup on 2026-08-14 and hand-editable after. Delete anything you would rather not be asked for; add tags to group songs on the page.",
+  "_comment": "Request list for /setlist. Hand-editable. tags drive the filter chips on the page; add or remove freely.",
   "songs": [
     {
       "title": "3AM",
       "artist": "Matchbox 20",
       "tags": [
+        "altrock",
         "90s"
       ]
     },
     {
       "title": "Absolutely (Story of a Girl)",
-      "artist": "Nine Days"
+      "artist": "Nine Days",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Ain’t No Sunshine",
-      "artist": "Bill Withers"
+      "artist": "Bill Withers",
+      "tags": [
+        "rnb"
+      ]
     },
     {
       "title": "American Girl",
-      "artist": "Tom Petty"
+      "artist": "Tom Petty",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "American Pie",
-      "artist": "Don McLean"
+      "artist": "Don McLean",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Angel From Montgomery",
-      "artist": "John Prine"
+      "artist": "John Prine",
+      "tags": [
+        "country"
+      ]
     },
     {
       "title": "Anti-hero",
-      "artist": "Taylor Swift"
+      "artist": "Taylor Swift",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Banana Pancakes",
-      "artist": "Jack Johnson"
+      "artist": "Jack Johnson",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Bartender",
-      "artist": "Rehab"
+      "artist": "Rehab",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "Beat It",
-      "artist": "Michael Jackson"
+      "artist": "Michael Jackson",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Blackbird",
-      "artist": "The Beatles"
+      "artist": "The Beatles",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Blinding Lights",
-      "artist": "The Weeknd"
+      "artist": "The Weeknd",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Brother",
-      "artist": "NEEDTOBREATHE"
+      "artist": "NEEDTOBREATHE",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "Brown Eyed Girl",
-      "artist": "Van Morrison"
+      "artist": "Van Morrison",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Burn One Down",
-      "artist": "Ben Harper"
+      "artist": "Ben Harper",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Cable Car",
-      "artist": "The Fray"
+      "artist": "The Fray",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Callie",
@@ -79,157 +125,257 @@
       "title": "Champagne Supernova",
       "artist": "Oasis",
       "tags": [
+        "altrock",
         "90s"
       ]
     },
     {
       "title": "Chariot",
-      "artist": "Gavin DeGraw"
+      "artist": "Gavin DeGraw",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Chasing Cars",
-      "artist": "Snow Patrol"
+      "artist": "Snow Patrol",
+      "tags": [
+        "pop"
+      ]
+    },
+    {
+      "title": "Chicken Fried",
+      "artist": "Zac Brown Band",
+      "tags": [
+        "country"
+      ]
     },
     {
       "title": "Cigarette Lighter Love Song",
-      "artist": "Marvelous 3/Butch Walker"
+      "artist": "Marvelous 3/Butch Walker",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Closing Time",
       "artist": "Semisonic",
       "tags": [
+        "altrock",
         "90s"
       ]
     },
     {
       "title": "Collide",
-      "artist": "Howie Day"
-    },
-    {
-      "title": "Come All Ye Faithful",
-      "artist": "Hillsong United"
+      "artist": "Howie Day",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Come On Get Higher",
-      "artist": "Matt Nathanson"
+      "artist": "Matt Nathanson",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Come Pick Me Up",
-      "artist": "Ryan Adams"
+      "artist": "Ryan Adams",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Comfortable",
-      "artist": "John Mayer"
+      "artist": "John Mayer",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Cooler Than Me",
-      "artist": "Mike Posner"
+      "artist": "Mike Posner",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Country Roads, Take Me Home",
-      "artist": "John Denver"
+      "artist": "John Denver",
+      "tags": [
+        "country"
+      ]
     },
     {
       "title": "Crash Into Me",
-      "artist": "Dave Matthews Band"
+      "artist": "Dave Matthews Band",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Crazy",
-      "artist": "Gnarls Barkley"
+      "artist": "Gnarls Barkley",
+      "tags": [
+        "rnb"
+      ]
     },
     {
       "title": "Crazy Love",
-      "artist": "Van Morrison"
+      "artist": "Van Morrison",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Creep",
       "artist": "Radiohead",
       "tags": [
+        "altrock",
         "90s"
       ]
     },
     {
       "title": "Cry Me a River",
-      "artist": "Justin Timberlake"
+      "artist": "Justin Timberlake",
+      "tags": [
+        "rnb"
+      ]
     },
     {
       "title": "Daughters",
-      "artist": "John Mayer"
+      "artist": "John Mayer",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Desperately Wanting",
-      "artist": "Better Than Ezra"
+      "artist": "Better Than Ezra",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "Don't Stop Believin'",
-      "artist": "Journey"
+      "artist": "Journey",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "Drift Away",
-      "artist": "Dobie Gray"
+      "artist": "Dobie Gray",
+      "tags": [
+        "rnb"
+      ]
     },
     {
       "title": "Dust on the Bottle",
-      "artist": "Alan Jackson"
+      "artist": "Alan Jackson",
+      "tags": [
+        "country"
+      ]
     },
     {
       "title": "Easy Like Sunday Morning",
-      "artist": "The Commodores"
+      "artist": "The Commodores",
+      "tags": [
+        "rnb"
+      ]
     },
     {
       "title": "Fight For Your Right",
-      "artist": "Beastie Boys"
+      "artist": "Beastie Boys",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "Flake",
-      "artist": "Jack Johnson"
+      "artist": "Jack Johnson",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Free Fallin’",
-      "artist": "Tom Petty"
+      "artist": "Tom Petty",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "Friends in Low Places",
-      "artist": "Garth Brooks"
+      "artist": "Garth Brooks",
+      "tags": [
+        "country"
+      ]
     },
     {
       "title": "Good Riddance",
       "artist": "Green Day",
       "tags": [
+        "altrock",
         "90s"
       ]
     },
     {
       "title": "Good Time",
-      "artist": "Niko Moon"
+      "artist": "Niko Moon",
+      "tags": [
+        "country"
+      ]
     },
     {
       "title": "Hallelujah",
-      "artist": "Jeff Buckley"
+      "artist": "Jeff Buckley",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Have You Ever Seen The Rain",
-      "artist": "CCR"
+      "artist": "CCR",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "Heartfelt Hallelujah",
-      "artist": "Brandon Lake"
+      "artist": "Brandon Lake",
+      "tags": [
+        "worship"
+      ]
     },
     {
       "title": "Heartless",
-      "artist": "Kanye West"
+      "artist": "Kanye West",
+      "tags": [
+        "hiphop"
+      ]
     },
     {
       "title": "Hey There Delilah",
-      "artist": "Plain White T's"
+      "artist": "Plain White T's",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Hey Ya!",
-      "artist": "OutKast"
+      "artist": "OutKast",
+      "tags": [
+        "hiphop"
+      ]
     },
     {
       "title": "How Far We've Come",
-      "artist": "Matchbox 20"
+      "artist": "Matchbox 20",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "Howling at the Moon",
@@ -240,24 +386,37 @@
     },
     {
       "title": "I Want It That Way",
-      "artist": "Backstreet Boys"
+      "artist": "Backstreet Boys",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "I Want You Back",
-      "artist": "Michael Jackson"
+      "artist": "Michael Jackson",
+      "tags": [
+        "rnb"
+      ]
     },
     {
       "title": "I Will Follow You Into the Dark",
-      "artist": "Death Cab for Cutie"
+      "artist": "Death Cab for Cutie",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "I Will Survive",
-      "artist": "Cake"
+      "artist": "Cake",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "I’ll Be There For You",
       "artist": "The Rembrandts",
       "tags": [
+        "pop",
         "90s"
       ]
     },
@@ -270,64 +429,97 @@
     },
     {
       "title": "I’m Not Okay",
-      "artist": "Jelly Roll"
+      "artist": "Jelly Roll",
+      "tags": [
+        "country"
+      ]
     },
     {
       "title": "I’m Yours",
-      "artist": "Jason Mraz"
+      "artist": "Jason Mraz",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "If You Could Only See",
       "artist": "Tonic",
       "tags": [
+        "pop",
         "90s"
       ]
     },
     {
       "title": "In Christ Alone",
-      "artist": "Keith Getty"
+      "artist": "Keith Getty",
+      "tags": [
+        "worship"
+      ]
     },
     {
       "title": "In My Life",
-      "artist": "The Beatles"
+      "artist": "The Beatles",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Inside Out",
-      "artist": "Eve 6"
+      "artist": "Eve 6",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "Interstate Love Song",
       "artist": "Stone Temple Pilots",
       "tags": [
+        "altrock",
         "90s"
       ]
     },
     {
       "title": "Ironic",
-      "artist": "Alanis Morrisette",
+      "artist": "Alanis Morissette",
       "tags": [
+        "pop",
         "90s"
       ]
     },
     {
       "title": "Joker",
-      "artist": "Stever Miller Band"
+      "artist": "Steve Miller Band",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "Jolene",
-      "artist": "Ray Lamontagne"
+      "artist": "Ray Lamontagne",
+      "tags": [
+        "country"
+      ]
     },
     {
       "title": "Jumper",
-      "artist": "third Eye Blind"
+      "artist": "Third Eye Blind",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "Just What I Needed",
-      "artist": "The Cars"
+      "artist": "The Cars",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "Keep Your Head Up",
-      "artist": "Andy Grammer"
+      "artist": "Andy Grammer",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Last Goodbye",
@@ -340,85 +532,102 @@
       "title": "Last Kiss",
       "artist": "Pearl Jam",
       "tags": [
+        "altrock",
         "90s"
       ]
     },
     {
       "title": "Layla",
-      "artist": "Eric Clapton"
+      "artist": "Eric Clapton",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "Learn To Fly",
       "artist": "Foo Fighters",
       "tags": [
+        "altrock",
         "90s"
       ]
     },
     {
       "title": "Leroy Brown",
-      "artist": "Jim Croce"
+      "artist": "Jim Croce",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Let Her Cry",
       "artist": "Hootie and the Blowfish",
       "tags": [
+        "pop",
         "90s"
       ]
     },
     {
       "title": "Let Her Go",
-      "artist": "Passenger"
-    },
-    {
-      "title": "Let it Snow",
-      "artist": "Dean Martin"
+      "artist": "Passenger",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Little Lion Man",
-      "artist": "Mumford and Sons"
+      "artist": "Mumford and Sons",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "Lonely Night In Georgia",
-      "artist": "Marc Broussard"
+      "artist": "Marc Broussard",
+      "tags": [
+        "rnb"
+      ]
     },
     {
       "title": "Look What You've Done",
-      "artist": "Jet"
+      "artist": "Jet",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "Mad World",
-      "artist": "Gary JULES"
+      "artist": "Gary Jules",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Mary Jane’s Last Dance",
-      "artist": "Tom Petty"
-    },
-    {
-      "title": "Matchbox 20",
-      "artist": "Push",
+      "artist": "Tom Petty",
       "tags": [
-        "90s"
+        "classicrock"
       ]
     },
     {
-      "title": "Meet Virginia lyrics",
+      "title": "Meet Virginia",
       "artist": "Train",
       "tags": [
+        "pop",
         "90s"
       ]
-    },
-    {
-      "title": "Mercy Me",
-      "artist": "To Not Worship You"
     },
     {
       "title": "Mexico",
-      "artist": "Jump Little Children"
+      "artist": "Jump Little Children",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Mr Jones",
       "artist": "Counting Crows",
       "tags": [
+        "altrock",
         "90s"
       ]
     },
@@ -426,41 +635,71 @@
       "title": "My Hero",
       "artist": "Foo Fighters",
       "tags": [
+        "altrock",
         "90s"
       ]
     },
     {
       "title": "Neon",
-      "artist": "John Mayer"
+      "artist": "John Mayer",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "No Such Thing",
-      "artist": "John Mayer"
+      "artist": "John Mayer",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "No Woman No Cry",
-      "artist": "Bob Marley"
+      "artist": "Bob Marley",
+      "tags": [
+        "rnb"
+      ]
+    },
+    {
+      "title": "Nose on the Grindstone",
+      "artist": "Tyler Childers",
+      "tags": [
+        "country"
+      ]
     },
     {
       "title": "Nothing Fancy",
-      "artist": "Dave Barnes"
+      "artist": "Dave Barnes",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
-      "title": "Oh Holy Night",
-      "artist": null
+      "title": "On the Road Again",
+      "artist": "Willie Nelson",
+      "tags": [
+        "country"
+      ]
     },
     {
       "title": "One Headlight",
-      "artist": "Wallflowers"
+      "artist": "Wallflowers",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "Only Hope",
-      "artist": "Switchfoot"
+      "artist": "Switchfoot",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "Out Of My Head",
       "artist": "Fastball",
       "tags": [
+        "altrock",
         "90s"
       ]
     },
@@ -468,12 +707,24 @@
       "title": "Prince of Bel Air",
       "artist": "Will Smith",
       "tags": [
+        "hiphop",
         "90s"
       ]
     },
     {
       "title": "Pumped Up Kicks",
-      "artist": "Foster the People"
+      "artist": "Foster the People",
+      "tags": [
+        "altrock"
+      ]
+    },
+    {
+      "title": "Push",
+      "artist": "Matchbox 20",
+      "tags": [
+        "altrock",
+        "90s"
+      ]
     },
     {
       "title": "Racine",
@@ -484,123 +735,182 @@
     },
     {
       "title": "Realize",
-      "artist": "Colbie Callait"
+      "artist": "Colbie Caillat",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Remix to Ignition",
       "artist": "R. Kelly",
       "tags": [
+        "hiphop",
         "90s"
       ]
     },
     {
       "title": "Rock n' Roll",
-      "artist": "Eric Hutchinson"
+      "artist": "Eric Hutchinson",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Rocket Man",
-      "artist": "Elton John"
+      "artist": "Elton John",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "Rolling In The Deep",
-      "artist": "Adele"
+      "artist": "Adele",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Roxanne",
-      "artist": "The Police"
-    },
-    {
-      "title": "Sample Song",
-      "artist": "Artist Name"
+      "artist": "The Police",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "Save Tonight",
       "artist": "Eagle Eye Cherry",
       "tags": [
+        "altrock",
         "90s"
       ]
     },
     {
       "title": "Save Yourself",
-      "artist": "Sense Field"
+      "artist": "Sense Field",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "Sex On Fire",
-      "artist": "Kings of Leon"
+      "artist": "Kings of Leon",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "She Likes Me for Me",
       "artist": "Blessed Union of Souls",
       "tags": [
+        "altrock",
         "90s"
       ]
     },
     {
       "title": "She Will Be Loved",
-      "artist": "Maroon Five"
+      "artist": "Maroon 5",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Shimmer",
-      "artist": "Fuel"
+      "artist": "Fuel",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "Simple Man",
-      "artist": "Lynyrd Skynyrd"
+      "artist": "Lynyrd Skynyrd",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "Since You've Been Gone",
-      "artist": "Kelly Clarkson"
+      "artist": "Kelly Clarkson",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Sitting on the Dock of The Bay",
-      "artist": "Otis Redding"
+      "artist": "Otis Redding",
+      "tags": [
+        "rnb"
+      ]
     },
     {
       "title": "Slide",
       "artist": "Goo Goo Dolls",
       "tags": [
+        "altrock",
         "90s"
       ]
     },
     {
       "title": "Something in the Orange",
-      "artist": "Zac Bryan"
-    },
-    {
-      "title": "Song Idea",
-      "artist": "Mike/Patrick"
+      "artist": "Zach Bryan",
+      "tags": [
+        "country"
+      ]
     },
     {
       "title": "Soulshine",
-      "artist": "The Allman Brothers"
+      "artist": "The Allman Brothers",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "Stand By Me",
-      "artist": "The Tempatations"
+      "artist": "The Temptations",
+      "tags": [
+        "rnb"
+      ]
     },
     {
       "title": "Steal My Kisses",
-      "artist": "Ben Harper"
+      "artist": "Ben Harper",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Superstitious",
-      "artist": "Stevie Wonder"
+      "artist": "Stevie Wonder",
+      "tags": [
+        "rnb"
+      ]
     },
     {
       "title": "Sweet Home Alabama",
-      "artist": "Lynyrd Skynyrd"
+      "artist": "Lynyrd Skynyrd",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "Sweet Melissa",
-      "artist": "Allman Brothers"
+      "artist": "The Allman Brothers",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "Sweet Pea",
-      "artist": "Amos Lee"
+      "artist": "Amos Lee",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Take It Easy",
-      "artist": "The Eagles"
+      "artist": "The Eagles",
+      "tags": [
+        "country"
+      ]
     },
     {
       "title": "That’s Who I Will Be",
@@ -611,74 +921,116 @@
     },
     {
       "title": "The Middle",
-      "artist": "Jimmy Eat World"
+      "artist": "Jimmy Eat World",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "The Way You Are",
-      "artist": "Bruno Mars"
+      "artist": "Bruno Mars",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "The Weight",
-      "artist": "The Band"
+      "artist": "The Band",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "This Is How We Do It",
-      "artist": "Montell Jordan"
+      "artist": "Montell Jordan",
+      "tags": [
+        "hiphop"
+      ]
     },
     {
       "title": "Time In a Bottle",
-      "artist": "Jim Croce"
+      "artist": "Jim Croce",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Tiny Dancer",
-      "artist": "Elton John"
+      "artist": "Elton John",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "To Not Worship You",
-      "artist": "MercyMe"
+      "artist": "MercyMe",
+      "tags": [
+        "worship"
+      ]
     },
     {
       "title": "Too Close",
-      "artist": "Alex Clare"
+      "artist": "Alex Clare",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "Torn",
       "artist": "Natalie Imbruglia",
       "tags": [
+        "pop",
         "90s"
       ]
     },
     {
       "title": "Trouble",
-      "artist": "Ray Lamontagne"
+      "artist": "Ray Lamontagne",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Turn The Page",
-      "artist": "Bob Segar"
-    },
-    {
-      "title": "Tyler Childers",
-      "artist": "Nose on the Grindstone"
+      "artist": "Bob Seger",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "Use Somebody",
-      "artist": "Kings of Leon"
+      "artist": "Kings of Leon",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "Victoria",
-      "artist": "John Mayer"
+      "artist": "John Mayer",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Wagon Wheel",
-      "artist": "Old Crow Medicine Show"
+      "artist": "Old Crow Medicine Show",
+      "tags": [
+        "country"
+      ]
     },
     {
       "title": "Waiting On the World to Change",
-      "artist": "John Mayer"
+      "artist": "John Mayer",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Washed By The Water",
-      "artist": "Needtobreathe"
+      "artist": "NEEDTOBREATHE",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "Weightless",
@@ -691,44 +1043,65 @@
       "title": "What I Got",
       "artist": "Sublime",
       "tags": [
+        "altrock",
         "90s"
       ]
     },
     {
       "title": "Whatever You Like",
-      "artist": "T.I."
+      "artist": "T.I.",
+      "tags": [
+        "hiphop"
+      ]
     },
     {
       "title": "Who Says?",
-      "artist": "John Mayer"
+      "artist": "John Mayer",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "Why Georgia",
-      "artist": "John Mayer"
-    },
-    {
-      "title": "Willie Nelson",
-      "artist": "On the Road Again"
+      "artist": "John Mayer",
+      "tags": [
+        "acoustic"
+      ]
     },
     {
       "title": "With a Little Help From My Friends",
-      "artist": "The Beetles"
+      "artist": "The Beatles",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "Wonderwall",
-      "artist": "Oasis"
+      "artist": "Oasis",
+      "tags": [
+        "altrock"
+      ]
     },
     {
       "title": "You and Me",
-      "artist": "Lifehouse"
+      "artist": "Lifehouse",
+      "tags": [
+        "pop"
+      ]
     },
     {
       "title": "You Are My Sunshine",
-      "artist": "Jimmie Davis"
+      "artist": "Jimmie Davis",
+      "tags": [
+        "country"
+      ]
     },
     {
       "title": "You Can’t Always Get What You Want",
-      "artist": "Rolling Stones"
+      "artist": "Rolling Stones",
+      "tags": [
+        "classicrock"
+      ]
     },
     {
       "title": "You Drop the Beat",
@@ -736,14 +1109,6 @@
       "tags": [
         "original"
       ]
-    },
-    {
-      "title": "Zac Brown Band",
-      "artist": "Chicken Fried"
-    },
-    {
-      "title": "Zach Bryan",
-      "artist": "Something in the Orange"
     }
   ]
 }

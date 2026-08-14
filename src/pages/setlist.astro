@@ -5,14 +5,25 @@ import songsData from '../data/songs.json';
 
 const songs = songsData.songs;
 
-/** Tag filter chips, most-used first. */
-const tagCounts = songs.reduce<Record<string, number>>((acc, s) => {
-  for (const t of (s as { tags?: string[] }).tags ?? []) acc[t] = (acc[t] ?? 0) + 1;
-  return acc;
-}, {});
-const tags = Object.entries(tagCounts)
-  .sort((a, b) => b[1] - a[1])
-  .map(([t]) => t);
+/**
+ * Filter chips. Order is deliberate rather than by count: the genres people
+ * ask for first, then the cross-cutting tags, then his own songs last.
+ */
+const TAG_LABELS: Record<string, string> = {
+  acoustic: 'Acoustic',
+  classicrock: 'Classic rock',
+  altrock: 'Alt rock',
+  pop: 'Pop',
+  country: 'Country',
+  rnb: 'R&B',
+  hiphop: 'Hip hop',
+  '90s': '90s',
+  worship: 'Worship',
+  original: 'Originals',
+};
+
+const present = new Set(songs.flatMap((s) => (s as { tags?: string[] }).tags ?? []));
+const tags = Object.keys(TAG_LABELS).filter((t) => present.has(t));
 ---
 
 <Base
@@ -67,7 +78,7 @@ const tags = Object.entries(tagCounts)
             </button>
             {tags.map((t) => (
               <button class="req__tag mono" type="button" data-tag={t}>
-                {t}
+                {TAG_LABELS[t]}
               </button>
             ))}
           </div>
