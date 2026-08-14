@@ -125,38 +125,42 @@ const jsonLd = [
     </div>
   </section>
 
-  <!-- Videos -->
-  <section class="container section" aria-labelledby="watch-title">
-    <SectionHeader eyebrow="Watch" title="Live sets" id="watch-title" />
-    <div class="grid-3">
-      {
-        videos.map((v) => (
-          <Card image={photo(v.image)} imageAlt={v.imageAlt} href={v.href}>
-            <div class="card__kind mono">{v.kind}</div>
-            <div class="card__title">{v.title}</div>
-          </Card>
-        ))
-      }
-    </div>
-  </section>
-
-  <!-- Merch -->
-  <section class="rule-top" aria-labelledby="merch-title">
-    <div class="container section">
-      <SectionHeader eyebrow="Merch" title="Wear the set" id="merch-title" />
-      <div class="grid-3">
-        {
-          merch.map((m) => (
-            <Card image={photo(m.image)} imageAlt={m.imageAlt} href={m.href}>
-              <div class="card__kind mono">{m.kind}</div>
-              <div class="card__title">{m.title}</div>
-              <div class="card__price mono">{m.price}</div>
+  <!-- Videos — off until the cards point at real videos (site.json showVideos) -->
+  {
+    site.showVideos && (
+      <section class="container section" aria-labelledby="watch-title">
+        <SectionHeader eyebrow="Watch" title="Live sets" id="watch-title" />
+        <div class="grid-3">
+          {videos.map((v) => (
+            <Card image={photo(v.image)} imageAlt={v.imageAlt} href={v.href}>
+              <div class="card__kind mono">{v.kind}</div>
+              <div class="card__title">{v.title}</div>
             </Card>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Merch — off until there is something to sell (site.json showMerch) -->
+  {
+    site.showMerch && (
+      <section class="rule-top" aria-labelledby="merch-title">
+        <div class="container section">
+          <SectionHeader eyebrow="Merch" title="Wear the set" id="merch-title" />
+          <div class="grid-3">
+            {merch.map((m) => (
+              <Card image={photo(m.image)} imageAlt={m.imageAlt} href={m.href}>
+                <div class="card__kind mono">{m.kind}</div>
+                <div class="card__title">{m.title}</div>
+                <div class="card__price mono">{m.price}</div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   <!-- Booking inquiry -->
   <section class="booking-cta rule-top" aria-labelledby="booking-cta-title">
