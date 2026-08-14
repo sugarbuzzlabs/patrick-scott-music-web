@@ -1,17 +1,868 @@
 {
-  "_comment": "The request list. Hand-edit freely — this is what the audience sees when they scan the QR code. 'tags' are optional and shown as small labels. Delete the starter songs below and put in your real set.",
+  "_comment": "Request list for /setlist, generated from the OnSong backup on 2026-08-14 and hand-editable after. Delete anything you would rather not be asked for; add tags to group songs on the page.",
   "songs": [
-    { "title": "No Diggity", "artist": "Blackstreet", "tags": ["hip hop, gone folk"] },
-    { "title": "Ms. Jackson", "artist": "OutKast", "tags": ["hip hop, gone folk"] },
-    { "title": "Jolene", "artist": "Dolly Parton", "tags": ["country"] },
-    { "title": "Tennessee Whiskey", "artist": "Chris Stapleton", "tags": ["country"] },
-    { "title": "Redbone", "artist": "Childish Gambino", "tags": ["R&B"] },
-    { "title": "Killing Me Softly", "artist": "Fugees", "tags": ["R&B"] },
-    { "title": "Dreams", "artist": "Fleetwood Mac", "tags": ["chick rock"] },
-    { "title": "Landslide", "artist": "Fleetwood Mac", "tags": ["chick rock"] },
-    { "title": "The Chain", "artist": "Fleetwood Mac", "tags": ["chick rock"] },
-    { "title": "Wagon Wheel", "artist": "Old Crow Medicine Show", "tags": ["country"] },
-    { "title": "Ho Hey", "artist": "The Lumineers", "tags": ["folk"] },
-    { "title": "Use Somebody", "artist": "Kings of Leon", "tags": ["pop"] }
+    {
+      "title": "3AM",
+      "artist": "Matchbox 20 ",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Absolutely (Story of a Girl)",
+      "artist": "Nine Days "
+    },
+    {
+      "title": "Ain’t No Sunshine",
+      "artist": "Bill Withers"
+    },
+    {
+      "title": "All I Want For Christmas Is You",
+      "artist": "Mariah Carey"
+    },
+    {
+      "title": "American Girl",
+      "artist": "Tom Petty"
+    },
+    {
+      "title": "American Pie",
+      "artist": "Don McLean"
+    },
+    {
+      "title": "Angel From Montgomery",
+      "artist": "John Prine"
+    },
+    {
+      "title": "Anti-hero",
+      "artist": "Taylor Swift"
+    },
+    {
+      "title": "Away in a Manger",
+      "artist": "Christmas Songs",
+      "tags": [
+        "christmas"
+      ]
+    },
+    {
+      "title": "Banana Pancakes",
+      "artist": "Jack Johnson"
+    },
+    {
+      "title": "Bartender",
+      "artist": "Rehab"
+    },
+    {
+      "title": "Beat It",
+      "artist": "Michael Jackson"
+    },
+    {
+      "title": "Blackbird",
+      "artist": "The Beatles"
+    },
+    {
+      "title": "Blinding Lights",
+      "artist": "The Weeknd"
+    },
+    {
+      "title": "Brother",
+      "artist": "NEEDTOBREATHE"
+    },
+    {
+      "title": "Brown Eyed Girl",
+      "artist": "Van Morrison"
+    },
+    {
+      "title": "Burn One Down",
+      "artist": "Ben Harper"
+    },
+    {
+      "title": "Cable Car",
+      "artist": "The Fray "
+    },
+    {
+      "title": "Callie",
+      "artist": "Patrick Hoydar",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "title": "Champagne Supernova",
+      "artist": "Oasis ",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Chariot",
+      "artist": "Gavin DeGraw"
+    },
+    {
+      "title": "Chasing Cars",
+      "artist": "Snow Patrol"
+    },
+    {
+      "title": "Cigarette Lighter Love Song",
+      "artist": "Marvelous 3/Butch Walker"
+    },
+    {
+      "title": "Closing Time",
+      "artist": "Semisonic",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Collide",
+      "artist": "Howie Day"
+    },
+    {
+      "title": "Come All Ye Faithful",
+      "artist": "Hillsong United"
+    },
+    {
+      "title": "Come On Get Higher",
+      "artist": "Matt Nathanson"
+    },
+    {
+      "title": "Come Pick Me Up",
+      "artist": "Ryan Adams"
+    },
+    {
+      "title": "Comfortable",
+      "artist": "John Mayer"
+    },
+    {
+      "title": "Cooler Than Me",
+      "artist": "Mike Posner"
+    },
+    {
+      "title": "Country Roads, Take Me Home",
+      "artist": "John Denver"
+    },
+    {
+      "title": "Crash Into Me",
+      "artist": "Dave Matthews Band"
+    },
+    {
+      "title": "Crazy",
+      "artist": "Gnarls Barkley"
+    },
+    {
+      "title": "Crazy Love",
+      "artist": "Van Morrison"
+    },
+    {
+      "title": "Creep",
+      "artist": "Radiohead",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Cry Me a River",
+      "artist": "Justin Timberlake"
+    },
+    {
+      "title": "Daughters",
+      "artist": "John Mayer"
+    },
+    {
+      "title": "Deck The Halls",
+      "artist": "Christmas Songs",
+      "tags": [
+        "christmas"
+      ]
+    },
+    {
+      "title": "Desperately Wanting",
+      "artist": "Better Than Ezra"
+    },
+    {
+      "title": "Dont Stop Believing",
+      "artist": "Journey"
+    },
+    {
+      "title": "Drift Away",
+      "artist": "Dobie Gray"
+    },
+    {
+      "title": "Dust on the Bottle",
+      "artist": "Alan Jackson"
+    },
+    {
+      "title": "Easy Like Sunday Morning",
+      "artist": "The Commodores"
+    },
+    {
+      "title": "Fight For Your Right",
+      "artist": "Beastie Boys "
+    },
+    {
+      "title": "Flake",
+      "artist": "Jack Johnson"
+    },
+    {
+      "title": "Free Fallin’",
+      "artist": "Tom Petty"
+    },
+    {
+      "title": "Frosty The Snowman",
+      "artist": null,
+      "tags": [
+        "christmas"
+      ]
+    },
+    {
+      "title": "Good Riddance",
+      "artist": "Green Day",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Good Time",
+      "artist": "Niko Moon"
+    },
+    {
+      "title": "Hallelujah",
+      "artist": "Jeff Buckley"
+    },
+    {
+      "title": "Hark the Herald Angels Sing",
+      "artist": "Phil Wickham",
+      "tags": [
+        "christmas"
+      ]
+    },
+    {
+      "title": "Have You Ever Seen The Rain",
+      "artist": "CCR"
+    },
+    {
+      "title": "Have yourself a merry little Christmas",
+      "artist": null
+    },
+    {
+      "title": "Heartfelt Hallelujah",
+      "artist": "Brandon Lake"
+    },
+    {
+      "title": "Heartless",
+      "artist": "Kanye West"
+    },
+    {
+      "title": "Hey There Delilah",
+      "artist": "Plain White T's "
+    },
+    {
+      "title": "Hey Ya!",
+      "artist": "OutKast"
+    },
+    {
+      "title": "Holly Jolly Christmas",
+      "artist": "Michael Bublé"
+    },
+    {
+      "title": "How Far We've Come",
+      "artist": "Matchbox 20"
+    },
+    {
+      "title": "Howling at the Moon",
+      "artist": "Patrick Hoydar",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "title": "I Want It That Way",
+      "artist": "Backstreet Boys"
+    },
+    {
+      "title": "I Want You Back",
+      "artist": "Michael Jackson"
+    },
+    {
+      "title": "I Will Follow You Into the Dark",
+      "artist": "Death Cab for Cutie"
+    },
+    {
+      "title": "I Will Survive",
+      "artist": "Cake "
+    },
+    {
+      "title": "I’ll Be There For You",
+      "artist": "The Rembrandts",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "I’m in this for Love",
+      "artist": "Patrick Hoydar",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "title": "I’m Not Okay",
+      "artist": "Jelly Roll"
+    },
+    {
+      "title": "I’m Yours",
+      "artist": "Jason Mraz"
+    },
+    {
+      "title": "If You Could Only See",
+      "artist": "Tonic",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "In Christ Alone",
+      "artist": "Keith Getty"
+    },
+    {
+      "title": "In My Life",
+      "artist": "The Beatles"
+    },
+    {
+      "title": "Inside Out",
+      "artist": "Eve 6"
+    },
+    {
+      "title": "Interstate Love Song",
+      "artist": "Stone Temple Pilots",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Ironic",
+      "artist": "Alanis Morrisette",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "It's Beginning To Look A Lot Like Christmas",
+      "artist": null
+    },
+    {
+      "title": "Jingle Bell Rock",
+      "artist": null
+    },
+    {
+      "title": "Jingle Bells",
+      "artist": null,
+      "tags": [
+        "christmas"
+      ]
+    },
+    {
+      "title": "Joker",
+      "artist": "Stever Miller Band"
+    },
+    {
+      "title": "Jolene",
+      "artist": "Ray Lamontagne"
+    },
+    {
+      "title": "Joy to the World",
+      "artist": "Intro:",
+      "tags": [
+        "christmas"
+      ]
+    },
+    {
+      "title": "Jumper",
+      "artist": "third Eye Blind"
+    },
+    {
+      "title": "Just What I Needed",
+      "artist": "The Cars"
+    },
+    {
+      "title": "Keep Your Head Up",
+      "artist": "Andy Grammer"
+    },
+    {
+      "title": "Last Christmas",
+      "artist": "Wham"
+    },
+    {
+      "title": "Last Goodbye",
+      "artist": "Patrick Hoydar",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "title": "Last Kiss",
+      "artist": "Pearl Jam",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Learn To Fly",
+      "artist": "Foo Fighters ",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Leroy Brown",
+      "artist": "Jim Croce"
+    },
+    {
+      "title": "Let Her Cry",
+      "artist": "Hootie and the Blowfish",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Let Her Go",
+      "artist": "Passenger"
+    },
+    {
+      "title": "Let it Snow",
+      "artist": "Dean Martin"
+    },
+    {
+      "title": "Little Lion Man",
+      "artist": "Mumford and Sons"
+    },
+    {
+      "title": "Lonely Night In Georgia",
+      "artist": "Marc Broussard"
+    },
+    {
+      "title": "Look What You've Done",
+      "artist": "Jet "
+    },
+    {
+      "title": "Mad World",
+      "artist": "Gary JULES"
+    },
+    {
+      "title": "Mary Jane’s Last Dance",
+      "artist": "Tom Petty"
+    },
+    {
+      "title": "Matchbox 20",
+      "artist": "Push",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Meet Virginia lyrics",
+      "artist": "Train",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Mercy Me",
+      "artist": "To Not Worship You"
+    },
+    {
+      "title": "Mexico",
+      "artist": "Jump Little Children"
+    },
+    {
+      "title": "Mr Jones",
+      "artist": "Counting Crows",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "My Hero",
+      "artist": "Foo Fighters",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Neon",
+      "artist": "John Mayer"
+    },
+    {
+      "title": "No Such THing",
+      "artist": "John Mayer "
+    },
+    {
+      "title": "No Woman No Cry",
+      "artist": "Bob Marley"
+    },
+    {
+      "title": "Nothing Fancy",
+      "artist": "Dave Barnes"
+    },
+    {
+      "title": "O Little Town of Bethlehem",
+      "artist": "C Dm",
+      "tags": [
+        "christmas"
+      ]
+    },
+    {
+      "title": "Oh Christmas Tree (O Tannenbaum)",
+      "artist": null
+    },
+    {
+      "title": "Oh Come All Ye Faithful - Third Day",
+      "artist": null,
+      "tags": [
+        "christmas"
+      ]
+    },
+    {
+      "title": "Oh Holy Night",
+      "artist": null
+    },
+    {
+      "title": "One Headlight",
+      "artist": "Wallflowers"
+    },
+    {
+      "title": "Only Hope",
+      "artist": "Switchfoot "
+    },
+    {
+      "title": "Out Of My Head",
+      "artist": "Fastball",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Prince of Bel Air",
+      "artist": "Will Smith",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Pumped Up Kicks",
+      "artist": "Foster the People"
+    },
+    {
+      "title": "Racine",
+      "artist": "Patrick Hoydar",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "title": "Realize",
+      "artist": "Colbie Callait"
+    },
+    {
+      "title": "Remix to Ignition",
+      "artist": "R. Kelly",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Rock n' Roll",
+      "artist": "Eric Hutchinson"
+    },
+    {
+      "title": "Rocket Man",
+      "artist": "Elton John"
+    },
+    {
+      "title": "Rockin' around the Christmas tree",
+      "artist": null
+    },
+    {
+      "title": "Rolling In The Deep",
+      "artist": "Adele"
+    },
+    {
+      "title": "Roxanne",
+      "artist": "The Police"
+    },
+    {
+      "title": "Rudolph The Red Nosed Reindeer",
+      "artist": "Christmas Songs",
+      "tags": [
+        "christmas"
+      ]
+    },
+    {
+      "title": "Sample Song",
+      "artist": "Artist Name"
+    },
+    {
+      "title": "Santa Claus Is Coming To Town",
+      "artist": null
+    },
+    {
+      "title": "Save Tonight",
+      "artist": "Eagle Eye Cherry",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Save Yourself",
+      "artist": "Sense Field"
+    },
+    {
+      "title": "Sex On Fire",
+      "artist": "Kings of Leon"
+    },
+    {
+      "title": "She Likes Me for Me",
+      "artist": "Blessed Union of Souls",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "She Will Be Loved",
+      "artist": "Maroon Five"
+    },
+    {
+      "title": "Shimmer",
+      "artist": "Fuel"
+    },
+    {
+      "title": "Silent Night",
+      "artist": null,
+      "tags": [
+        "christmas"
+      ]
+    },
+    {
+      "title": "Simple Man",
+      "artist": "Lynyrd Skynyrd"
+    },
+    {
+      "title": "Since You've Been Gone",
+      "artist": "Kelly Clarkson "
+    },
+    {
+      "title": "Sitting on the Dock of The Bay",
+      "artist": "Otis Redding"
+    },
+    {
+      "title": "Slide",
+      "artist": "Goo Goo Dolls",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Something in the Orange",
+      "artist": "Zac Bryan"
+    },
+    {
+      "title": "Song Idea",
+      "artist": "Mike/Patrick"
+    },
+    {
+      "title": "Soulshine",
+      "artist": "The Allman Brothers"
+    },
+    {
+      "title": "Stand By Me",
+      "artist": "The Tempatations"
+    },
+    {
+      "title": "Steal My Kisses",
+      "artist": "Ben Harper"
+    },
+    {
+      "title": "Superstitious",
+      "artist": "Stevie Wonder"
+    },
+    {
+      "title": "Sweet Home Alabama",
+      "artist": "Lynyrd Skynyrd"
+    },
+    {
+      "title": "Sweet Melissa",
+      "artist": "Allman Brothers"
+    },
+    {
+      "title": "Sweet Pea",
+      "artist": "Amos Lee"
+    },
+    {
+      "title": "Take It Easy",
+      "artist": "The Eagles"
+    },
+    {
+      "title": "That’s Who I Will Be",
+      "artist": "Patrick Hoydar",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "title": "The First Noel",
+      "artist": null,
+      "tags": [
+        "christmas"
+      ]
+    },
+    {
+      "title": "The Middle",
+      "artist": "Jimmy Eat World"
+    },
+    {
+      "title": "The Way You Are",
+      "artist": "Bruno Mars"
+    },
+    {
+      "title": "The Weight",
+      "artist": "The Band"
+    },
+    {
+      "title": "This Is How We Do It",
+      "artist": "Montell Jordan"
+    },
+    {
+      "title": "Time In a Bottle",
+      "artist": "Jim Croce"
+    },
+    {
+      "title": "To Not Worship You",
+      "artist": "MercyMe"
+    },
+    {
+      "title": "Too Close",
+      "artist": "Alex Clare"
+    },
+    {
+      "title": "Torn",
+      "artist": "Natalie Imbruglia",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Trouble",
+      "artist": "Ray Lamontagne"
+    },
+    {
+      "title": "Turn The Page",
+      "artist": "Bob Segar"
+    },
+    {
+      "title": "Tyler Childers",
+      "artist": "Nose on the Grindstone"
+    },
+    {
+      "title": "Use Somebody",
+      "artist": "Kings of Leon"
+    },
+    {
+      "title": "Victoria",
+      "artist": "John Mayer"
+    },
+    {
+      "title": "Wagon Wheel",
+      "artist": "Old Crow Medicine Show"
+    },
+    {
+      "title": "Waiting On the World to Change",
+      "artist": "John Mayer"
+    },
+    {
+      "title": "Washed By The Water",
+      "artist": "Needtobreathe"
+    },
+    {
+      "title": "We Wish You a Merry Christmas",
+      "artist": "Christmas Songs",
+      "tags": [
+        "christmas"
+      ]
+    },
+    {
+      "title": "Weightless",
+      "artist": "Patrick Hoydar",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "title": "What I Got",
+      "artist": "Sublime",
+      "tags": [
+        "90s"
+      ]
+    },
+    {
+      "title": "Whatever You Like",
+      "artist": "T.I.",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "title": "White Christmas",
+      "artist": "Bing Crosby"
+    },
+    {
+      "title": "Who Says?",
+      "artist": "John Mayer"
+    },
+    {
+      "title": "Why Georgia",
+      "artist": "John Mayer "
+    },
+    {
+      "title": "Willie Nelson",
+      "artist": "On the Road Again"
+    },
+    {
+      "title": "Winter Wonderland",
+      "artist": null
+    },
+    {
+      "title": "With a Little Help From My Friends",
+      "artist": "The Beetles"
+    },
+    {
+      "title": "Wonderwall",
+      "artist": "Oasis"
+    },
+    {
+      "title": "You and Me",
+      "artist": "Lifehouse"
+    },
+    {
+      "title": "You Are My Sunshine",
+      "artist": "Jimmie Davis"
+    },
+    {
+      "title": "You Can’t Always Get What You Want",
+      "artist": "Rolling Stones"
+    },
+    {
+      "title": "You Drop the Beat",
+      "artist": "Patrick Hoydar",
+      "tags": [
+        "original"
+      ]
+    },
+    {
+      "title": "Zac Brown Band",
+      "artist": "Chicken Fried"
+    },
+    {
+      "title": "Zach Bryan",
+      "artist": "Something in the Orange"
+    }
   ]
 }

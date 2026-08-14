@@ -4,6 +4,15 @@ import SectionHeader from '../components/SectionHeader.astro';
 import songsData from '../data/songs.json';
 
 const songs = songsData.songs;
+
+/** Tag filter chips, most-used first. */
+const tagCounts = songs.reduce<Record<string, number>>((acc, s) => {
+  for (const t of (s as { tags?: string[] }).tags ?? []) acc[t] = (acc[t] ?? 0) + 1;
+  return acc;
+}, {});
+const tags = Object.entries(tagCounts)
+  .sort((a, b) => b[1] - a[1])
+  .map(([t]) => t);
 ---
 
 <Base
@@ -38,19 +47,50 @@ const songs = songsData.songs;
         />
       </div>
 
+      <div class="req__field">
+        <label class="req__label mono" for="req-search">Search {songs.length} songs</label>
+        <input
+          class="req__input"
+          id="req-search"
+          type="search"
+          placeholder="Title or artist"
+          autocomplete="off"
+          data-search
+        />
+      </div>
+
+      {
+        tags.length > 0 && (
+          <div class="req__tags" role="group" aria-label="Filter by type">
+            <button class="req__tag mono req__tag--on" type="button" data-tag="">
+              All
+            </button>
+            {tags.map((t) => (
+              <button class="req__tag mono" type="button" data-tag={t}>
+                {t}
+              </button>
+            ))}
+          </div>
+        )
+      }
+
       <ul class="req__songs">
         {
           songs.map((s) => (
-            <li class="req__song">
+            <li
+              class="req__song"
+              data-tags={((s as { tags?: string[] }).tags ?? []).join(' ')}
+              data-haystack={`${s.title} ${s.artist ?? ''}`.toLowerCase()}
+            >
               <button
                 class="req__pick"
                 type="button"
                 data-song={s.title}
-                data-artist={s.artist}
+                data-artist={s.artist ?? ''}
               >
                 <span class="req__picktext">
                   <span class="req__title">{s.title}</span>
-                  <span class="req__artist mono">{s.artist}</span>
+                  {s.artist && <span class="req__artist mono">{s.artist}</span>}
                 </span>
                 <span class="req__add mono" aria-hidden="true">Request</span>
               </button>
@@ -58,6 +98,8 @@ const songs = songsData.songs;
           ))
         }
       </ul>
+
+      <p class="req__none mono" data-none hidden>Nothing matches. Try another word.</p>
     </section>
 
     <p class="req__status mono" data-status role="status" aria-live="polite" hidden></p>
@@ -171,10 +213,48 @@ const songs = songsData.songs;
     border-color: var(--focus-ring);
   }
 
+  .req__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  .req__tag {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-none);
+    padding: 0 var(--space-4);
+    min-height: 44px;
+    cursor: pointer;
+    transition: all var(--dur) var(--ease);
+  }
+
+  .req__tag:hover {
+    border-color: var(--border-strong);
+    color: var(--text-primary);
+  }
+
+  .req__tag--on {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--text-on-accent);
+  }
+
   .req__songs {
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+
+  .req__song[hidden] {
+    display: none;
+  }
+
+  .req__none {
+    color: var(--text-muted);
+    padding: var(--space-8) 0;
   }
 
   .req__pick {
@@ -396,6 +476,35 @@ const songs = songsData.songs;
       } finally {
         btn.disabled = false;
       }
+    });
+  });
+
+  // ---- search + tag filtering -------------------------------------------
+  const searchEl = document.querySelector<HTMLInputElement>('[data-search]');
+  const noneEl = document.querySelector<HTMLElement>('[data-none]');
+  const rows = [...document.querySelectorAll<HTMLElement>('.req__song')];
+  const tagBtns = [...document.querySelectorAll<HTMLButtonElement>('[data-tag]')];
+  let activeTag = '';
+
+  function applyFilter() {
+    const q = (searchEl?.value ?? '').trim().toLowerCase();
+    let shown = 0;
+    for (const row of rows) {
+      const matchesText = !q || (row.dataset.haystack ?? '').includes(q);
+      const matchesTag = !activeTag || (row.dataset.tags ?? '').split(' ').includes(activeTag);
+      const show = matchesText && matchesTag;
+      row.hidden = !show;
+      if (show) shown++;
+    }
+    if (noneEl) noneEl.hidden = shown > 0;
+  }
+
+  searchEl?.addEventListener('input', applyFilter);
+  tagBtns.forEach((b) => {
+    b.addEventListener('click', () => {
+      activeTag = b.dataset.tag ?? '';
+      tagBtns.forEach((x) => x.classList.toggle('req__tag--on', x === b));
+      applyFilter();
     });
   });
 
