@@ -17,10 +17,6 @@
       "artist": "Bill Withers"
     },
     {
-      "title": "All I Want For Christmas Is You",
-      "artist": "Mariah Carey"
-    },
-    {
       "title": "American Girl",
       "artist": "Tom Petty"
     },
@@ -35,13 +31,6 @@
     {
       "title": "Anti-hero",
       "artist": "Taylor Swift"
-    },
-    {
-      "title": "Away in a Manger",
-      "artist": "Christmas Songs",
-      "tags": [
-        "christmas"
-      ]
     },
     {
       "title": "Banana Pancakes",
@@ -168,13 +157,6 @@
       "artist": "John Mayer"
     },
     {
-      "title": "Deck The Halls",
-      "artist": "Christmas Songs",
-      "tags": [
-        "christmas"
-      ]
-    },
-    {
       "title": "Desperately Wanting",
       "artist": "Better Than Ezra"
     },
@@ -207,13 +189,6 @@
       "artist": "Tom Petty"
     },
     {
-      "title": "Frosty The Snowman",
-      "artist": null,
-      "tags": [
-        "christmas"
-      ]
-    },
-    {
       "title": "Good Riddance",
       "artist": "Green Day",
       "tags": [
@@ -229,19 +204,8 @@
       "artist": "Jeff Buckley"
     },
     {
-      "title": "Hark the Herald Angels Sing",
-      "artist": "Phil Wickham",
-      "tags": [
-        "christmas"
-      ]
-    },
-    {
       "title": "Have You Ever Seen The Rain",
       "artist": "CCR"
-    },
-    {
-      "title": "Have yourself a merry little Christmas",
-      "artist": null
     },
     {
       "title": "Heartfelt Hallelujah",
@@ -258,10 +222,6 @@
     {
       "title": "Hey Ya!",
       "artist": "OutKast"
-    },
-    {
-      "title": "Holly Jolly Christmas",
-      "artist": "Michael Bublé"
     },
     {
       "title": "How Far We've Come",
@@ -346,34 +306,12 @@
       ]
     },
     {
-      "title": "It's Beginning To Look A Lot Like Christmas",
-      "artist": null
-    },
-    {
-      "title": "Jingle Bell Rock",
-      "artist": null
-    },
-    {
-      "title": "Jingle Bells",
-      "artist": null,
-      "tags": [
-        "christmas"
-      ]
-    },
-    {
       "title": "Joker",
       "artist": "Stever Miller Band"
     },
     {
       "title": "Jolene",
       "artist": "Ray Lamontagne"
-    },
-    {
-      "title": "Joy to the World",
-      "artist": "Intro:",
-      "tags": [
-        "christmas"
-      ]
     },
     {
       "title": "Jumper",
@@ -386,10 +324,6 @@
     {
       "title": "Keep Your Head Up",
       "artist": "Andy Grammer"
-    },
-    {
-      "title": "Last Christmas",
-      "artist": "Wham"
     },
     {
       "title": "Last Goodbye",
@@ -504,24 +438,6 @@
       "artist": "Dave Barnes"
     },
     {
-      "title": "O Little Town of Bethlehem",
-      "artist": "C Dm",
-      "tags": [
-        "christmas"
-      ]
-    },
-    {
-      "title": "Oh Christmas Tree (O Tannenbaum)",
-      "artist": null
-    },
-    {
-      "title": "Oh Come All Ye Faithful - Third Day",
-      "artist": null,
-      "tags": [
-        "christmas"
-      ]
-    },
-    {
       "title": "Oh Holy Night",
       "artist": null
     },
@@ -578,10 +494,6 @@
       "artist": "Elton John"
     },
     {
-      "title": "Rockin' around the Christmas tree",
-      "artist": null
-    },
-    {
       "title": "Rolling In The Deep",
       "artist": "Adele"
     },
@@ -590,19 +502,8 @@
       "artist": "The Police"
     },
     {
-      "title": "Rudolph The Red Nosed Reindeer",
-      "artist": "Christmas Songs",
-      "tags": [
-        "christmas"
-      ]
-    },
-    {
       "title": "Sample Song",
       "artist": "Artist Name"
-    },
-    {
-      "title": "Santa Claus Is Coming To Town",
-      "artist": null
     },
     {
       "title": "Save Tonight",
@@ -633,13 +534,6 @@
     {
       "title": "Shimmer",
       "artist": "Fuel"
-    },
-    {
-      "title": "Silent Night",
-      "artist": null,
-      "tags": [
-        "christmas"
-      ]
     },
     {
       "title": "Simple Man",
@@ -705,13 +599,6 @@
       "artist": "Patrick Hoydar",
       "tags": [
         "original"
-      ]
-    },
-    {
-      "title": "The First Noel",
-      "artist": null,
-      "tags": [
-        "christmas"
       ]
     },
     {
@@ -782,13 +669,6 @@
       "artist": "Needtobreathe"
     },
     {
-      "title": "We Wish You a Merry Christmas",
-      "artist": "Christmas Songs",
-      "tags": [
-        "christmas"
-      ]
-    },
-    {
       "title": "Weightless",
       "artist": "Patrick Hoydar",
       "tags": [
@@ -804,14 +684,7 @@
     },
     {
       "title": "Whatever You Like",
-      "artist": "T.I.",
-      "tags": [
-        "original"
-      ]
-    },
-    {
-      "title": "White Christmas",
-      "artist": "Bing Crosby"
+      "artist": "T.I."
     },
     {
       "title": "Who Says?",
@@ -824,10 +697,6 @@
     {
       "title": "Willie Nelson",
       "artist": "On the Road Again"
-    },
-    {
-      "title": "Winter Wonderland",
-      "artist": null
     },
     {
       "title": "With a Little Help From My Friends",
