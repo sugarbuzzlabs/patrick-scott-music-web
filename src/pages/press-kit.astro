@@ -8,10 +8,13 @@ import SectionHeader from '../components/SectionHeader.astro';
 import site from '../data/site.json';
 import { photo } from '../lib/images';
 
+// `focus` is the object-position for the 120px-tall thumbnail crop. Portrait
+// sources lose most of their height to `object-fit: cover`, so bias upward to
+// keep faces in frame.
 const approved = [
-  { name: 'hero-bw-stage.png', alt: 'Patrick Scott on stage' },
-  { name: 'closeup-mic.jpg', alt: 'Close up at the mic' },
-  { name: 'festival-stage.jpg', alt: 'Festival stage' },
+  { name: 'hero-bw-stage.png', alt: 'Patrick Scott on stage', focus: '50% 40%' },
+  { name: 'closeup-mic.jpg', alt: 'Close up at the mic', focus: '50% 35%' },
+  { name: 'festival-stage.jpg', alt: 'Festival stage', focus: '50% 12%' },
 ];
 ---
 
@@ -22,7 +25,12 @@ const approved = [
 >
   <div class="container section">
     <SectionHeader eyebrow="Press kit" title="Patrick Scott">
-      <Button slot="action" variant="outline" href="/press-kit/">Download EPK</Button>
+      {/* Off until there is a real PDF to link (site.json showEpkDownload) */}
+      {site.showEpkDownload && (
+        <Button slot="action" variant="outline" href="/press-kit/">
+          Download EPK
+        </Button>
+      )}
     </SectionHeader>
 
     <div class="epk">
@@ -53,6 +61,7 @@ const approved = [
                 widths={[300, 600]}
                 sizes="(min-width: 900px) 220px, 33vw"
                 loading="lazy"
+                style={`object-position: ${p.focus}`}
               />
             ))
           }

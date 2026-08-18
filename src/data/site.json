@@ -6,9 +6,10 @@
   "description": "Atlanta-based live performer. Genre-bending covers built live with a loop pedal. Bars, breweries, festivals, weddings, private events.",
   "bookingEmail": "booking@patrickscottmusic.com",
 
-  "_comment_sections": "Home page sections that can be switched off while their content is still placeholder. Flip to true to bring them back; the data files stay in src/data/ either way.",
+  "_comment_sections": "Sections and controls that can be switched off while their content is still placeholder. Flip to true to bring them back; the data files stay in src/data/ either way.",
   "showVideos": false,
   "showMerch": false,
+  "showEpkDownload": false,
 
   "_comment_booking_form": "The booking form uses Netlify Forms - no config needed here. Submissions appear in Netlify under Forms > booking. Set up email notifications there (Forms > booking > Settings > Form notifications).",
 
