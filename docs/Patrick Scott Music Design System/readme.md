@@ -16,7 +16,7 @@ Stage-dark and poster-bold. Near-black warm backgrounds pulled from the hero pho
 - **The hook leads:** the genre-bending covers angle ("hip hop, gone folk") and live show energy come first; bio details second.
 - **No emoji.** Ever.
 - **Examples:**
-  - Hero: "ANY SONG. HIS WAY." / "Live looping, genre-bending covers. Atlanta."
+  - Hero: "ANY SONG. BUILT LIVE." / "Live looping, genre-bending covers. Atlanta."
   - Shows eyebrow: `UPCOMING SHOWS`
   - Booking CTA: "Book a show" / "Bars, breweries, weddings, private events."
   - Email capture: "New shows, first." + single email field.

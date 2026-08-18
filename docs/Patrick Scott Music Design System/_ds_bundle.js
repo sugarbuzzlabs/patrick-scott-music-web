@@ -902,7 +902,7 @@ function Home({
       lineHeight: 0.92,
       fontSize: 'clamp(56px, 8vw, 104px)'
     }
-  }, "Any song.", /*#__PURE__*/React.createElement("br", null), "His way."), /*#__PURE__*/React.createElement("div", {
+  }, "Any song.", /*#__PURE__*/React.createElement("br", null), "Built live."), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       gap: 12,

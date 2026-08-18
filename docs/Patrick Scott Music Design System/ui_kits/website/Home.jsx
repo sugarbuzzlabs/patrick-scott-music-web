@@ -10,7 +10,7 @@ function Home({ go }) {
         <div style={{ position: 'absolute', inset: 0, background: 'var(--protect-bottom)' }}></div>
         <div style={{ position: 'relative', maxWidth: 1200, margin: '0 auto', width: '100%', padding: '0 32px 72px', boxSizing: 'border-box' }}>
           <div style={{ ...mono, color: 'var(--text-accent)', marginBottom: 16 }}>Live looping · Genre-bending covers · Atlanta</div>
-          <h1 style={{ margin: 0, fontFamily: 'var(--font-display)', fontWeight: 800, fontStretch: '120%', textTransform: 'uppercase', letterSpacing: '-0.01em', lineHeight: 0.92, fontSize: 'clamp(56px, 8vw, 104px)' }}>Any song.<br />His way.</h1>
+          <h1 style={{ margin: 0, fontFamily: 'var(--font-display)', fontWeight: 800, fontStretch: '120%', textTransform: 'uppercase', letterSpacing: '-0.01em', lineHeight: 0.92, fontSize: 'clamp(56px, 8vw, 104px)' }}>Any song.<br />Built live.</h1>
           <div style={{ display: 'flex', gap: 12, marginTop: 32 }}>
             <Button variant="solid" size="lg" onClick={() => go('booking')}>Book a show</Button>
             <Button variant="outline" size="lg" href="#shows">See dates</Button>
